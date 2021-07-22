@@ -1,0 +1,16 @@
+.header-logo {
+    padding: 0 20px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    display: flex;
+
+    &__link {
+        width: 73px;
+        height: 30px;
+
+        & img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
