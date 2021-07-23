@@ -43,40 +43,40 @@
             <div class="filters__checked">
                 Выбрано: <span>16</span>
             </div>
-            <button class="filters__btn">Выгрузить в Excel</button>
+            <button class="filters__btn filters__btn--min-width">Выгрузить в Excel</button>
             <button class="filters__btn">+</button>
         </section>
         <section class="user-list">
             <div class="user-list__table">
                 <div class="user-list__tr">
-                    <div class="user-list__th">
-                        <label class="user-list__th-label">
-                            <input type="checkbox" name="all-checked" id="all-checked">
+                    <div class="user-list__th user-list__th--id">
+                        <input class="user-list__checkbox user-list__checkbox--all" type="checkbox" name="all-checked" id="all-checked">
+                        <label for="all-checked" class="user-list__th-label user-list__th-label--checkbox">
                             ID
                         </label>
                     </div>
-                    <div class="user-list__th">
+                    <div class="user-list__th user-list__th--user">
                         <span class="user-list__th-label">
                             <button class="user-list__sort-btn user-list__sort-btn--increment"></button>
                             <button class="user-list__sort-btn user-list__sort-btn--decrement"></button>
                             Пользователь
                         </span>
                     </div>
-                    <div class="user-list__th">
+                    <div class="user-list__th user-list__th--mail">
                         <span class="user-list__th-label">
                             <button class="user-list__sort-btn user-list__sort-btn--increment"></button>
                             <button class="user-list__sort-btn user-list__sort-btn--decrement"></button>
                             Почта
                         </span>
                     </div>
-                    <div class="user-list__th">
+                    <div class="user-list__th user-list__th--tel">
                         <span class="user-list__th-label">
                             <button class="user-list__sort-btn user-list__sort-btn--increment"></button>
                             <button class="user-list__sort-btn user-list__sort-btn--decrement"></button>
                             Телефон
                         </span>
                     </div>
-                    <div class="user-list__th">
+                    <div class="user-list__th user-list__th--date">
                         <span class="user-list__th-label">
                             <button class="user-list__sort-btn user-list__sort-btn--increment"></button>
                             <button class="user-list__sort-btn user-list__sort-btn--decrement"></button>
@@ -86,8 +86,8 @@
                 </div>
                 <div class="user-list__tr">
                     <div class="user-list__td">
-                        <label class="user-list__checkbox">
-                            <input type="checkbox" name="all-checked" id="check-651651616">
+                        <input class="user-list__checkbox" type="checkbox" name="admins" id="check-651651616">
+                        <label class="user-list__checkbox-label">
                         </label>
                         <a class="user-list__link">
                             651651616
