@@ -9,10 +9,20 @@
         display: flex;
         padding: 9px 12px;
         padding-top: 0;
+        padding-bottom: 1px;
+
+        border-bottom: 1px solid #EAEAEA;
 
         &:not(:first-child) {
-            padding-bottom: 17px;
+            padding-top: 9px;
+            padding-bottom: 7px;
             padding-right: 0;
+
+
+        }
+
+        &--selected {
+            background: rgba(240, 240, 240, 0.5);
         }
     }
 
@@ -193,13 +203,16 @@
 
         &:nth-child(1) {
             margin-right: 19px;
+            min-width: 71px;
         }
 
         &:nth-child(2) {
-            margin-right: 47px;
+            min-width: 163px;
+            margin-right: 174px;
         }
 
         &:nth-child(3) {
+            margin-right: 110px;
             margin-right: 70px;
         }
 
