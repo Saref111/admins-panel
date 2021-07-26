@@ -20,4 +20,12 @@ $(document).ready(() => {
             $(element).click();
         })
     })
+
+    $('.filters__btn--add-admins').click(function (e) {
+        $('.popup--admin-invite').addClass('popup--open')
+    })
+
+    $('.popup__close').click(function(e){
+        $(this).closest('.popup').removeClass('popup--open')
+    })
 })
