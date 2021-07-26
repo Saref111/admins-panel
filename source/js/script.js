@@ -5,10 +5,36 @@ const isRegistration = () => {
     return Boolean(params.registration)
 }
 
+const comparePasswords = () => {
+    return ($('.popup--admin-registration').find('#password').prop('value') === $('.popup--admin-registration').find('#confirm-password').prop('value')) &&
+    $('.popup--admin-registration').find('#password').prop('value') !== '' && $('.popup--admin-registration').find('#confirm-password').prop('value') !== ''
+}
+
 const showRegistrationPopup = () => {
     if (isRegistration()) {
 
         $('.popup--admin-registration').addClass('popup--open')
+        $('.popup--admin-registration').on('input', function (e) {
+            let isValid = true
+            const isSamePass = comparePasswords()
+
+            $(this).find('input:not([type="file"])').each(function (i, elem) {
+                
+                if (!elem.value) {
+                    if (isSamePass) {
+                        isValid = false
+                    }
+                } 
+            })
+
+
+            if (isValid && isSamePass) {
+                $('.popup--admin-registration').find('.popup__submit').prop('disabled', false)
+            } else {
+                $('.popup--admin-registration').find('.popup__submit').prop('disabled', true)
+            }
+        })
+
     }
 }
 
