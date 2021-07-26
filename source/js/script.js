@@ -2,12 +2,24 @@ const isRegistration = () => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
 
-    return Boolean(params.registration)
+    return Boolean(params.registration) //to call registration popup add to URL next query ?registration=true
 }
 
-const comparePasswords = () => {
-    return ($('.popup--admin-registration').find('#password').prop('value') === $('.popup--admin-registration').find('#confirm-password').prop('value')) &&
-    $('.popup--admin-registration').find('#password').prop('value') !== '' && $('.popup--admin-registration').find('#confirm-password').prop('value') !== ''
+const comparePasswords = (popupSelector, inputSelector, confirmInputSelector) => {
+    return ($(popupSelector).find(inputSelector).prop('value') === $(popupSelector).find(confirmInputSelector).prop('value')) &&
+    $(popupSelector).find(inputSelector).prop('value') !== '' && $(popupSelector).find(confirmInputSelector).prop('value') !== ''
+}
+
+const validateForgotPassPopup = () => {
+    $('.popup--forgot-pass').on('input', function (e) {
+        const isValid = comparePasswords('.popup--forgot-pass', '#forgot-password', '#forgot-confirm-password')
+        
+        if (isValid) {
+            $(this).find('.popup__submit').prop('disabled', false)
+        } else {
+            $(this).find('.popup__submit').prop('disabled', true)
+        }
+    })
 }
 
 const showRegistrationPopup = () => {
@@ -16,7 +28,7 @@ const showRegistrationPopup = () => {
         $('.popup--admin-registration').addClass('popup--open')
         $('.popup--admin-registration').on('input', function (e) {
             let isValid = true
-            const isSamePass = comparePasswords()
+            const isSamePass = comparePasswords('.popup--admin-registration', '#password', '#confirm-password')
 
             $(this).find('input:not([type="file"])').each(function (i, elem) {
                 
@@ -38,6 +50,26 @@ const showRegistrationPopup = () => {
     }
 }
 
+
+const setAuthPopupValidation = () => {
+    $('.popup--admin-authorization').on('input', function (e) {
+        let isValid = true
+        $(this).find('input:not([type="file"])').each(function (i, elem) {
+                
+            if (!elem.value) {
+                if (isSamePass) {
+                    isValid = false
+                }
+            } 
+        })
+        
+        if (isValid) {
+            $(this).find('.popup__submit').prop('disabled', false)
+        } else {
+            $(this).find('.popup__submit').prop('disabled', true)
+        }
+    })
+}
 
 
 
@@ -102,6 +134,17 @@ $(document).ready(() => {
         }
     })
 
-    showRegistrationPopup()
+    $('.popup__label-link--forgot-pass').click(function (e) {
+        $(this).closest('.popup').removeClass('popup--open')
+        $('.popup--forgot-pass').addClass('popup--open')
+        validateForgotPassPopup()
+    })
 
+    $('.popup__submit--ok').click(function (e) {
+        e.preventDefault()
+        $(this).closest('.popup').removeClass('popup--open')
+    })
+
+    showRegistrationPopup()
+    setAuthPopupValidation()
 })
