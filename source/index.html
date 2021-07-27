@@ -431,6 +431,7 @@
                 <label for="nickname" class="popup__label">
                     Ваш никнейм
                     <input class="popup__input" type="text" name="nickname" id="nickname" placeholder="Никнейм" required>
+                    <p class="popup__error popup__error--wrong-nickname">Данный никнейм уже занят. Придумайте новый</p>
                 </label>
                 <label for="name" class="popup__label">
                     Ваше имя
@@ -464,6 +465,7 @@
                 <label for="auth-nickname" class="popup__label">
                     Ваш никнейм
                     <input class="popup__input" type="text" name="nickname" id="auth-nickname" placeholder="Никнейм" required>
+                    <p class="popup__error popup__error--wrong-nickname">Никнейм и\или пароль введены неверно</p>
                 </label>
                 <label for="auth-password" class="popup__label">
                     Пароль
@@ -484,11 +486,13 @@
                     Новый пароль
                     <input class="popup__input" type="password" name="password" id="forgot-password" placeholder="Придумайте новый пароль" required>
                     <button class="popup__show-pass" type="button"></button>
+                    <p class="popup__error popup__error--diff-pass">Пароли не совпадают</p>
                 </label>
                 <label for="forgot-confirm-password" class="popup__label">
                     Повторите пароль
                     <input class="popup__input" type="password" name="password" id="forgot-confirm-password" placeholder="Повторите пароль" required>
                     <button class="popup__show-pass" type="button"></button>
+                    <p class="popup__error popup__error--new-pass">Пароль должен отличаться от того что был ранее</p>
                 </label>
                 <button disabled class="popup__submit" type="submit">Войти</button>
                 <button class="popup__close" type="button"></button>

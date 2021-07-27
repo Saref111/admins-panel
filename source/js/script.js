@@ -4,6 +4,12 @@ const isRegistration = () => {
 
     return Boolean(params.registration) //to call registration popup add to URL next query ?registration=true
 }
+const isAuth = () => {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+
+    return Boolean(params.auth) //to call registration popup add to URL next query ?auth=true
+}
 
 const comparePasswords = (popupSelector, inputSelector, confirmInputSelector) => {
     const isSame = ($(popupSelector).find(inputSelector).prop('value') === $(popupSelector).find(confirmInputSelector).prop('value')) &&
@@ -97,6 +103,13 @@ const setAuthPopupValidation = () => {
 }
 
 
+const showAuthPopup = () => {
+    if (isAuth()) {
+        $('.popup--admin-authorization').addClass('popup--open')
+        setAuthPopupValidation()
+    }
+}
+
 
 $(document).ready(() => {
     $('[data-picker="datepicker"]').datetimepicker({
@@ -172,5 +185,6 @@ $(document).ready(() => {
     })
 
     showRegistrationPopup()
-    setAuthPopupValidation()
+    showAuthPopup()
+    
 })
