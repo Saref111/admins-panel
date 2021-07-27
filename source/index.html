@@ -444,18 +444,20 @@
                     Придумайте пароль
                     <input class="popup__input" type="password" name="password" id="password" placeholder="Пароль" required>
                     <button class="popup__show-pass" type="button"></button>
+                    <p class="popup__error popup__error--invalid-pass">Пароль должен быть не мене 6 символов в длину и содержать как буквы так и цифры</p>
                 </label>
                 <label for="confirm-password" class="popup__label">
                     Повторите пароль
                     <input class="popup__input" type="password" name="confirm-password" id="confirm-password" placeholder="Повторный пароль" required>
                     <button class="popup__show-pass" type="button"></button>
+                    <p class="popup__error popup__error--diff-pass">Пароли не совпадают</p>
                 </label>
                 <button disabled class="popup__submit" type="submit">Зарегистрироваться</button>
                 <button class="popup__close" type="button"></button>
             </form>
         </div>
     </div>
-    <div class="popup popup--open popup--admin-authorization">
+    <div class="popup popup--admin-authorization">
         <div class="popup__window">
             <h2 class="popup__title">Авторизация администратора</h2>
             <form class="popup__form" action="#" method="post">

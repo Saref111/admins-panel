@@ -6,13 +6,37 @@ const isRegistration = () => {
 }
 
 const comparePasswords = (popupSelector, inputSelector, confirmInputSelector) => {
-    return ($(popupSelector).find(inputSelector).prop('value') === $(popupSelector).find(confirmInputSelector).prop('value')) &&
+    const isSame = ($(popupSelector).find(inputSelector).prop('value') === $(popupSelector).find(confirmInputSelector).prop('value')) &&
     $(popupSelector).find(inputSelector).prop('value') !== '' && $(popupSelector).find(confirmInputSelector).prop('value') !== ''
+
+
+    if (isSame) {
+        $(popupSelector).removeClass('popup--diff-pass')
+        return true
+    } else {
+        $(popupSelector).addClass('popup--diff-pass')
+        return false
+    }
+
+}
+
+const validatePassword = (popupSelector, inputSelector) => {
+    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/gi
+    const pass = $(inputSelector).prop('value')
+
+
+    if (passRegex.test(pass)) {
+        $(popupSelector).removeClass('popup--invalid-pass')
+        return true
+    } else {
+        $(popupSelector).addClass('popup--invalid-pass')
+        return false
+    }
 }
 
 const validateForgotPassPopup = () => {
     $('.popup--forgot-pass').on('input', function (e) {
-        const isValid = comparePasswords('.popup--forgot-pass', '#forgot-password', '#forgot-confirm-password')
+        const isValid = validatePassword('.popup--forgot-pass', '#forgot-password') 
         
         if (isValid) {
             $(this).find('.popup__submit').prop('disabled', false)
@@ -28,19 +52,20 @@ const showRegistrationPopup = () => {
         $('.popup--admin-registration').addClass('popup--open')
         $('.popup--admin-registration').on('input', function (e) {
             let isValid = true
-            const isSamePass = comparePasswords('.popup--admin-registration', '#password', '#confirm-password')
+            // const isValidPass = comparePasswords('.popup--admin-registration', '#password', '#confirm-password') use compare after submitting form
+            const isValidPass = validatePassword('.popup--admin-registration', '#password', '#confirm-password') 
 
             $(this).find('input:not([type="file"])').each(function (i, elem) {
                 
                 if (!elem.value) {
-                    if (isSamePass) {
+                    if (isValidPass) {
                         isValid = false
                     }
                 } 
             })
 
 
-            if (isValid && isSamePass) {
+            if (isValid && isValidPass) {
                 $('.popup--admin-registration').find('.popup__submit').prop('disabled', false)
             } else {
                 $('.popup--admin-registration').find('.popup__submit').prop('disabled', true)
@@ -105,7 +130,8 @@ $(document).ready(() => {
     })
 
     $('.popup__textarea').on('input', function (e) {
-        const isValidInput = e.target.value !== ''
+        const regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]?\n)/
+        const isValidInput = regex.test(e.target.value) 
 
         if (isValidInput) {
             $(e.target).closest('form').find('.popup__submit').prop('disabled', false)

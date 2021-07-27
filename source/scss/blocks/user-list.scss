@@ -97,12 +97,12 @@
 
         &--increment {
           transform: rotateZ(180deg);
-          left: 15px;
+          left: -10px;
           top: 0.1px;
         }
 
         &--decrement {
-          left: 15px;
+          left: -10px;
           top: 6px;
         }
 
@@ -265,8 +265,6 @@
     font-weight: normal;
     font-size: 12px;
     line-height: 16px;
-    /* identical to box height */
-
     color: #333333;
   }
 

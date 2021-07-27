@@ -223,4 +223,22 @@
       }
     }
   }
+
+  &__error {
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    color: red;
+    font-size: 12px;
+    line-height: 100%;
+    margin: 0;
+
+    .popup--invalid-pass &--invalid-pass {
+      display: block;
+    }
+    .popup--diff-pass &--diff-pass {
+      display: block;
+      bottom: -17px;
+    }
+  }
 }
