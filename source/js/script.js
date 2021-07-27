@@ -1,16 +1,3 @@
-const isRegistration = () => {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const params = Object.fromEntries(urlSearchParams.entries());
-
-    return Boolean(params.registration) //to call registration popup add to URL next query ?registration=true
-}
-const isAuth = () => {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const params = Object.fromEntries(urlSearchParams.entries());
-
-    return Boolean(params.auth) //to call registration popup add to URL next query ?auth=true
-}
-
 const comparePasswords = (popupSelector, inputSelector, confirmInputSelector) => {
     const isSame = ($(popupSelector).find(inputSelector).prop('value') === $(popupSelector).find(confirmInputSelector).prop('value')) &&
     $(popupSelector).find(inputSelector).prop('value') !== '' && $(popupSelector).find(confirmInputSelector).prop('value') !== ''
@@ -53,32 +40,32 @@ const validateForgotPassPopup = () => {
 }
 
 const showRegistrationPopup = () => {
-    if (isRegistration()) {
+    
 
-        $('.popup--admin-registration').addClass('popup--open')
-        $('.popup--admin-registration').on('input', function (e) {
-            let isValid = true
-            // const isValidPass = comparePasswords('.popup--admin-registration', '#password', '#confirm-password') use compare after submitting form
-            const isValidPass = validatePassword('.popup--admin-registration', '#password', '#confirm-password') 
+    $('.popup--admin-registration').addClass('popup--open')
+    $('.popup--admin-registration').on('input', function (e) {
+        let isValid = true
+        // const isValidPass = comparePasswords('.popup--admin-registration', '#password', '#confirm-password') use compare after submitting form
+        const isValidPass = validatePassword('.popup--admin-registration', '#password', '#confirm-password') 
 
-            $(this).find('input:not([type="file"])').each(function (i, elem) {
-                
-                if (!elem.value) {
-                    if (isValidPass) {
-                        isValid = false
-                    }
-                } 
-            })
-
-
-            if (isValid && isValidPass) {
-                $('.popup--admin-registration').find('.popup__submit').prop('disabled', false)
-            } else {
-                $('.popup--admin-registration').find('.popup__submit').prop('disabled', true)
-            }
+        $(this).find('input:not([type="file"])').each(function (i, elem) {
+            
+            if (!elem.value) {
+                if (isValidPass) {
+                    isValid = false
+                }
+            } 
         })
 
-    }
+
+        if (isValid && isValidPass) {
+            $('.popup--admin-registration').find('.popup__submit').prop('disabled', false)
+        } else {
+            $('.popup--admin-registration').find('.popup__submit').prop('disabled', true)
+        }
+    })
+
+    
 }
 
 
@@ -104,10 +91,8 @@ const setAuthPopupValidation = () => {
 
 
 const showAuthPopup = () => {
-    if (isAuth()) {
-        $('.popup--admin-authorization').addClass('popup--open')
-        setAuthPopupValidation()
-    }
+    $('.popup--admin-authorization').addClass('popup--open')
+    setAuthPopupValidation()
 }
 
 
