@@ -719,6 +719,24 @@
         <button class="pagination__more-btn">Дальше</button>
       </section> -->
     </main>
+    <div class="popup popup--remove-user">
+      <div class="popup__window">
+        <h2 class="popup__title">Заблокировать данного пользователя?</h2>
+        <form class="popup__form popup__form--wide" action="#" method="post">
+          <p class="popup__text popup__text--centered">
+            Если вы подтвердите данное действие, то этот пользователь не сможет
+            авторизоваться в свой аккаунт, а все данные о нём будут удалены из
+            админки.
+          </p>
+          <button class="popup__submit popup__submit--cancel" type="button">
+            Отмена
+          </button>
+          <button class="popup__submit popup__submit--remove" type="submit">
+            Заблокировать
+          </button>
+        </form>
+      </div>
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="

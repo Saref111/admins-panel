@@ -27,10 +27,17 @@
     line-height: 32px;
     text-align: center;
     color: #333333;
+    max-width: 433px;
+    margin: 0 auto;
   }
   &__form {
     padding-left: 80px;
     padding-right: 80px;
+
+    &--wide {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
   }
   &__submit {
     @include button-reset;
@@ -61,6 +68,18 @@
       text-align: center;
       color: #a0a0a0;
       cursor: auto;
+    }
+
+    &--remove {
+      display: inline-block;
+      max-width: 180px;
+      background: linear-gradient(180deg, #ec5438 0%, #d44327 100%);
+      color: #fff;
+    }
+    &--cancel {
+      display: inline-block;
+      max-width: 180px;
+      margin-left: 25px;
     }
   }
   &__close {
@@ -174,6 +193,11 @@
     line-height: 21px;
     text-align: center;
     color: #333333;
+
+    &--centered {
+      max-width: 433px;
+      text-align: center;
+    }
   }
 
   &__show-pass {

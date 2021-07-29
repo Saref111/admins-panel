@@ -102,6 +102,15 @@ const showAuthPopup = () => {
   setAuthPopupValidation();
 };
 
+const blockUser = () => {
+  $(".user-tabs__block-button").click(function (e) {
+    $(".popup--remove-user").addClass("popup--open");
+  });
+  $(".popup__submit--cancel").click(function (e) {
+    $(".popup--remove-user").removeClass("popup--open");
+  });
+};
+
 const toggleUserTabs = () => {
   $(".user-tabs .user-tabs__item").each(function (i, el) {
     $(el)
@@ -211,4 +220,5 @@ $(document).ready(() => {
   showRegistrationPopup();
   showAuthPopup();
   toggleUserTabs();
+  blockUser();
 });
