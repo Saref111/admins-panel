@@ -67,6 +67,18 @@
       margin-right: 143px;
     }
 
+    &--reports {
+      margin-right: 30px;
+    }
+
+    &--no-label {
+      margin-right: 23px;
+    }
+
+    &--mr100 {
+      margin-right: 100px;
+    }
+
     &:last-child {
       margin-left: auto;
       margin-right: 20px;
@@ -190,6 +202,10 @@
   &__td {
     display: flex;
 
+    &--min-w32 {
+      max-width: 32px;
+    }
+
     &--pt {
       padding-top: 9px;
     }
@@ -225,6 +241,27 @@
     &:last-child {
       margin-left: auto;
     }
+
+    &--mr-27 {
+      margin-right: 27px !important;
+    }
+    &--mr-35 {
+      margin-right: 35px !important;
+    }
+  }
+
+  &__reports-count {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #333333;
+    display: block;
+    margin-top: 7px;
+    margin-left: 12px;
+    margin-right: 20px;
+    min-width: 100px;
   }
 
   &__name {
@@ -245,6 +282,17 @@
       line-height: 12px;
       color: rgba(0, 0, 0, 0.5);
     }
+  }
+
+  &__user-id {
+    display: block;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 9px;
+    line-height: 12px;
+    text-decoration-line: underline;
+    color: rgba(0, 0, 0, 0.5);
   }
 
   &__avatar {
@@ -278,5 +326,28 @@
     line-height: 16px;
     color: #333333;
     padding-top: 1px;
+  }
+
+  &__report-link {
+    display: block;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    text-decoration-line: underline;
+
+    color: #333333;
+  }
+  &__report-info {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 9px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.5);
   }
 }
