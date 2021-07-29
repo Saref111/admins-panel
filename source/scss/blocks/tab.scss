@@ -146,4 +146,43 @@
     text-align: center;
     color: #333333;
   }
+
+  &__error {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ee0202;
+    margin: 0;
+    margin-top: 10px;
+    padding-left: 20px;
+    display: none;
+  }
+
+  &__success {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #219653;
+    margin: 0;
+    margin-top: 10px;
+    padding-left: 40px;
+    display: none;
+  }
+
+  &__form {
+    &--error {
+      & .tab__error {
+        display: block;
+      }
+    }
+    &--success {
+      & .tab__success {
+        display: block;
+      }
+    }
+  }
 }
