@@ -102,6 +102,25 @@ const showAuthPopup = () => {
   setAuthPopupValidation();
 };
 
+const toggleUserTabs = () => {
+  $(".user-tabs .user-tabs__item").each(function (i, el) {
+    $(el)
+      .find(".user-tabs__button")
+      .click(function (e) {
+        $(".user-tabs .user-tabs__item").removeClass(
+          "user-tabs__item--current"
+        );
+        $(el).addClass("user-tabs__item--current");
+        $(".user-tabs .tab").removeClass("tab--current");
+        $(".user-tabs .tab").each(function (idx, elem) {
+          if (idx === i) {
+            $(elem).addClass("tab--current");
+          }
+        });
+      });
+  });
+};
+
 $(document).ready(() => {
   $('[data-picker="datepicker"]').datetimepicker({
     timepicker: false,
@@ -191,4 +210,5 @@ $(document).ready(() => {
   validateForgotPassPopup();
   showRegistrationPopup();
   showAuthPopup();
+  toggleUserTabs();
 });
