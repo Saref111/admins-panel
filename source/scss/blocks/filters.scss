@@ -7,7 +7,7 @@
   padding-top: 16px;
   padding-bottom: 10px;
 
-  .tab--current & {
+  .tab--current:nth-child(2) & {
     padding-top: 10px;
   }
 
