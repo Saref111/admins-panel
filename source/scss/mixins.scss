@@ -19,7 +19,6 @@
 }
 
 @mixin hover-focus-active {
-
   &:hover,
   &:focus {
     @media (hover: hover) {
@@ -35,7 +34,6 @@
 }
 
 @mixin hover-active($hover, $active) {
-
   &:hover,
   &:focus {
     background-color: $hover;
@@ -50,4 +48,10 @@
   transition-property: $property;
   transition-duration: $duration;
   transition-timing-function: $tf;
+}
+
+@mixin responsive-block($max-width: unset) {
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
 }
