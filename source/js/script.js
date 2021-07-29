@@ -175,6 +175,19 @@ $(document).ready(() => {
     $(this).closest(".popup").removeClass("popup--open");
   });
 
+  $("#user-avatar").on("input", function (e) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      $(this).closest(".tab__avatar").find("img").prop("src", reader.result);
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+
+    $(".tab__avatar-remove-label").click(function (e) {
+      $(e.target).closest(".tab__avatar").find("img").removeAttr("src");
+    });
+  });
+
   validateForgotPassPopup();
   showRegistrationPopup();
   showAuthPopup();

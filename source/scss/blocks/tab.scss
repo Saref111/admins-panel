@@ -1,0 +1,99 @@
+.tab {
+  display: none;
+  padding: 0 10px;
+
+  &--current {
+    display: block;
+  }
+
+  &__title {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    color: #333333;
+  }
+
+  &__legend {
+    margin-bottom: 3px;
+  }
+  &__avatar {
+    display: flex;
+  }
+
+  &__avatar-wrapper {
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #dadada;
+    margin-right: 20px;
+
+    &[src] {
+      & ~ .tab__avatar-controls > .tab__avatar-add {
+        display: none;
+      }
+      & ~ .tab__avatar-controls > .tab__avatar-remove {
+        display: block;
+      }
+    }
+
+    &:not([src]) {
+      & ~ .tab__avatar-controls > .tab__avatar-add {
+        display: block;
+      }
+      & ~ .tab__avatar-controls > .tab__avatar-remove {
+        display: none;
+      }
+    }
+  }
+
+  &__avatar-remove {
+    padding-top: 15px;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+  }
+
+  &__avatar-remove-label {
+    @include button-reset;
+    display: block;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #ee0202;
+  }
+
+  &__avatar-add {
+    & input {
+      display: none;
+    }
+  }
+
+  &__add-label {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: #3072c4;
+  }
+  &__avatar-info {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 15px;
+    display: block;
+    color: rgba(0, 0, 0, 0.5);
+    width: 167px;
+  }
+}

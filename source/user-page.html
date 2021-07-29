@@ -69,6 +69,40 @@
             Заблокировать пользователя
           </button>
         </div>
+        <ul class="user-tabs__tabs-list">
+          <li class="tab tab--current">
+            <h2 class="tab__title">Общие данные</h2>
+            <form class="tab__form" action="#" method="post">
+              <legend class="tab__legend">Фото</legend>
+              <div class="tab__avatar">
+                <img
+                  class="tab__avatar-wrapper"
+                  alt=""
+                  width="64"
+                  height="64"
+                />
+                <div class="tab__avatar-controls">
+                  <div class="tab__avatar-add">
+                    <label class="tab__add-label"
+                      >+ Добавить фото
+                      <input type="file" name="avatar" id="user-avatar" />
+                      <span class="tab__avatar-info">
+                        не более 5.00mb jpg, png, jpeg. Рекомендуемый размер
+                        150х150
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tab__avatar-remove">
+                    <span class="tab__avatar-name">filename.jpg</span>
+                    <button class="tab__avatar-remove-label" type="button">
+                      Удалить фото
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </li>
+        </ul>
       </section>
       <!-- <section class="filters">
         <div class="filters__search">

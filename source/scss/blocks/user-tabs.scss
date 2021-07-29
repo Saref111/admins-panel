@@ -11,7 +11,7 @@
     height: 1px;
     content: "";
     background-color: #eaeaea;
-    bottom: 1px;
+    top: 35px;
     left: 0;
   }
 
@@ -75,5 +75,9 @@
     font-size: 12px;
     line-height: 10px;
     color: #ff4550;
+  }
+
+  &__tabs-list {
+    @include list-reset;
   }
 }
