@@ -1,6 +1,10 @@
 .tab {
   display: none;
-  padding: 0 10px;
+
+  &:first-child {
+    padding: 0 10px;
+    padding-left: 20px;
+  }
 
   &--current {
     display: block;
