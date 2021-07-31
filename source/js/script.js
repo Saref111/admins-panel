@@ -135,12 +135,40 @@ $(document).ready(() => {
     timepicker: false,
     format: "d-m-Y",
     mask: true,
+    onClose: function (d, el) {
+      const data = {
+        date: d,
+        id: el
+          .prop("id")
+          .split("-")
+          .map((it, i) =>
+            i === 1 ? it.slice(0, 1).toUpperCase() + it.slice(1) : it
+          )
+          .join(""),
+      };
+      const dateEvent = new CustomEvent("set-date", { detail: data });
+      window.dispatchEvent(dateEvent);
+    },
   });
 
   $('[data-picker="timepicker"]').datetimepicker({
     datepicker: false,
     format: "H:m",
     mask: true,
+    onClose: function (d, el) {
+      const data = {
+        time: d,
+        id: el
+          .prop("id")
+          .split("-")
+          .map((it, i) =>
+            i === 1 ? it.slice(0, 1).toUpperCase() + it.slice(1) : it
+          )
+          .join(""),
+      };
+      const timeEvent = new CustomEvent("set-time", { detail: data });
+      window.dispatchEvent(timeEvent);
+    },
   });
 
   $('[name="admins"]').change(function (e) {

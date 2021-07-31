@@ -2,12 +2,13 @@ const list = new Vue({
   el: "#list",
   data: {
     query: "",
-    beginDate: "",
-    endDate: "",
-    beginTime: "",
-    endTime: "",
+    fromDate: "",
+    toDate: "",
+    fromTime: "",
+    toTime: "",
     data: [],
     rawData: {},
+    checked: 0,
   },
   async beforeMount() {
     const res = await $.ajax(
@@ -17,9 +18,21 @@ const list = new Vue({
     this.rawData = res.data;
     this.data = res.data.data;
   },
+  mounted() {
+    window.addEventListener("set-date", (e) => {
+      this[e.detail.id] = e.detail.date;
+    });
+    window.addEventListener("set-time", (e) => {
+      this[e.detail.id] = e.detail.time;
+    });
+  },
   methods: {
-    set(e) {
-      this.beginDate = e.target.value;
+    checkUnit(e) {
+      if (e.target.checked) {
+        this.checked++;
+      } else {
+        this.checked--;
+      }
     },
   },
 });

@@ -59,14 +59,12 @@
               name="from-date"
               id="from-date"
               data-picker="datepicker"
-              v-model="beginDate"
             />
             <input
               type="text"
               name="from-time"
               id="from-time"
               data-picker="timepicker"
-              v-model="beginTime"
             />
           </div>
           <div class="filters__date-time">
@@ -76,17 +74,15 @@
               name="to-date"
               id="to-date"
               data-picker="datepicker"
-              @input="set"
             />
             <input
               type="text"
               name="to-time"
               id="to-time"
               data-picker="timepicker"
-              @input="set"
             />
           </div>
-          <div class="filters__checked">Выбрано: <span>16</span></div>
+          <div class="filters__checked">Выбрано: <span>{{checked}}</span></div>
           <button class="filters__btn filters__btn--min-width">
             Выгрузить в Excel
           </button>
@@ -162,6 +158,7 @@
                     type="checkbox"
                     name="admins"
                     :id="'check-' + admin.id"
+                    @input="checkUnit"
                   />
                   <label
                     :for="'check-' + admin.id"
@@ -280,7 +277,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="js/moment.min.js"></script>
-    <script src="js/script.min.js"></script>
     <script src="js/vue-list.min.js"></script>
+    <script src="js/script.min.js"></script>
   </body>
 </html>
