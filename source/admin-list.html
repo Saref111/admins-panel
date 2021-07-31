@@ -40,595 +40,209 @@
       </div>
     </header>
     <main class="page-main">
-      <section class="filters">
-        <div class="filters__search">
-          <input type="text" name="search" id="search" placeholder="Поиск" />
-          <button class="filters__search-btn"></button>
-        </div>
-        <div class="filters__date-time">
-          <label for="from-date" class="filters__label">Начиная с:</label>
-          <input
-            type="text"
-            name="from-date"
-            id="from-date"
-            data-picker="datepicker"
-          />
-          <input
-            type="text"
-            name="from-time"
-            id="from-time"
-            data-picker="timepicker"
-          />
-        </div>
-        <div class="filters__date-time">
-          <label for="to-date" class="filters__label">до:</label>
-          <input
-            type="text"
-            name="to-date"
-            id="to-date"
-            data-picker="datepicker"
-          />
-          <input
-            type="text"
-            name="to-time"
-            id="to-time"
-            data-picker="timepicker"
-          />
-        </div>
-        <div class="filters__checked">Выбрано: <span>16</span></div>
-        <button class="filters__btn filters__btn--min-width">
-          Выгрузить в Excel
-        </button>
-        <button class="filters__btn filters__btn--add-admins">+</button>
-      </section>
-      <section class="user-list">
-        <div class="user-list__table">
-          <div class="user-list__tr user-list__tr--heading">
-            <div class="user-list__th user-list__th--id">
-              <input
-                class="user-list__checkbox user-list__checkbox--all"
-                type="checkbox"
-                name="all-checked"
-                id="all-checked"
-              />
-              <label
-                for="all-checked"
-                class="user-list__th-label user-list__th-label--checkbox"
-              >
-                ID
-              </label>
-            </div>
-            <div class="user-list__th user-list__th--user">
-              <span class="user-list__th-label">
-                <button
-                  class="user-list__sort-btn user-list__sort-btn--increment"
-                ></button>
-                <button
-                  class="user-list__sort-btn user-list__sort-btn--decrement"
-                ></button>
-                Пользователь
-              </span>
-            </div>
-            <div class="user-list__th user-list__th--mail">
-              <span class="user-list__th-label">
-                <button
-                  class="user-list__sort-btn user-list__sort-btn--increment"
-                ></button>
-                <button
-                  class="user-list__sort-btn user-list__sort-btn--decrement"
-                ></button>
-                Почта
-              </span>
-            </div>
-            <div class="user-list__th user-list__th--tel">
-              <span class="user-list__th-label">
-                <button
-                  class="user-list__sort-btn user-list__sort-btn--increment"
-                ></button>
-                <button
-                  class="user-list__sort-btn user-list__sort-btn--decrement"
-                ></button>
-                Телефон
-              </span>
-            </div>
-            <div class="user-list__th user-list__th--date">
-              <span class="user-list__th-label">
-                <button
-                  class="user-list__sort-btn user-list__sort-btn--increment"
-                ></button>
-                <button
-                  class="user-list__sort-btn user-list__sort-btn--decrement"
-                ></button>
-                Дата послед. входа
-              </span>
-            </div>
+      <div id="list">
+        <section class="filters">
+          <div class="filters__search">
+            <input
+              v-model="query"
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Поиск"
+            />
+            <button class="filters__search-btn"></button>
           </div>
-          <div class="user-list__wrapper">
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
+          <div class="filters__date-time">
+            <label for="from-date" class="filters__label">Начиная с:</label>
+            <input
+              type="text"
+              name="from-date"
+              id="from-date"
+              data-picker="datepicker"
+              v-model="beginDate"
+            />
+            <input
+              type="text"
+              name="from-time"
+              id="from-time"
+              data-picker="timepicker"
+              v-model="beginTime"
+            />
+          </div>
+          <div class="filters__date-time">
+            <label for="to-date" class="filters__label">до:</label>
+            <input
+              type="text"
+              name="to-date"
+              id="to-date"
+              data-picker="datepicker"
+              @input="set"
+            />
+            <input
+              type="text"
+              name="to-time"
+              id="to-time"
+              data-picker="timepicker"
+              @input="set"
+            />
+          </div>
+          <div class="filters__checked">Выбрано: <span>16</span></div>
+          <button class="filters__btn filters__btn--min-width">
+            Выгрузить в Excel
+          </button>
+          <button class="filters__btn filters__btn--add-admins">+</button>
+        </section>
+        <section class="user-list">
+          <div class="user-list__table">
+            <div class="user-list__tr user-list__tr--heading">
+              <div class="user-list__th user-list__th--id">
                 <input
-                  class="user-list__checkbox"
+                  class="user-list__checkbox user-list__checkbox--all"
                   type="checkbox"
-                  name="admins"
-                  id="check-651651616"
-                />
-                <label for="check-651651616" class="user-list__checkbox-label">
-                </label>
-                <a class="user-list__link"> 651651616 </a>
-              </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
-                </div>
-
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
-              </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
-                >
-              </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
-              </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
-              </div>
-            </div>
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
-                <input
-                  class="user-list__checkbox"
-                  type="checkbox"
-                  name="admins"
-                  id="check-123123123"
-                />
-                <label for="check-123123123" class="user-list__checkbox-label">
-                </label>
-                <a class="user-list__link"> 123123123 </a>
-              </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
-                </div>
-
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
-              </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
-                >
-              </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
-              </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
-              </div>
-            </div>
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
-                <input
-                  class="user-list__checkbox"
-                  type="checkbox"
-                  name="admins"
-                  id="check-098987876"
-                />
-                <label for="check-098987876" class="user-list__checkbox-label">
-                </label>
-                <a class="user-list__link"> 098987876 </a>
-              </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
-                </div>
-
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
-              </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
-                >
-              </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
-              </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
-              </div>
-            </div>
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
-                <input
-                  class="user-list__checkbox"
-                  type="checkbox"
-                  name="admins"
-                  id="check-555555555"
-                />
-                <label for="check-555555555" class="user-list__checkbox-label">
-                </label>
-                <a class="user-list__link"> 555555555 </a>
-              </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
-                </div>
-
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
-              </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
-                >
-              </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
-              </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
-              </div>
-            </div>
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
-                <input
-                  class="user-list__checkbox"
-                  type="checkbox"
-                  name="admins"
-                  id="check-65165111111"
+                  name="all-checked"
+                  id="all-checked"
                 />
                 <label
-                  for="check-65165111111"
-                  class="user-list__checkbox-label"
+                  for="all-checked"
+                  class="user-list__th-label user-list__th-label--checkbox"
                 >
+                  ID
                 </label>
-                <a class="user-list__link"> 65165111111 </a>
               </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
-                </div>
-
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
+              <div class="user-list__th user-list__th--user">
+                <span class="user-list__th-label">
+                  <button
+                    class="user-list__sort-btn user-list__sort-btn--increment"
+                  ></button>
+                  <button
+                    class="user-list__sort-btn user-list__sort-btn--decrement"
+                  ></button>
+                  Пользователь
+                </span>
               </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
-                >
+              <div class="user-list__th user-list__th--mail">
+                <span class="user-list__th-label">
+                  <button
+                    class="user-list__sort-btn user-list__sort-btn--increment"
+                  ></button>
+                  <button
+                    class="user-list__sort-btn user-list__sort-btn--decrement"
+                  ></button>
+                  Почта
+                </span>
               </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
+              <div class="user-list__th user-list__th--tel">
+                <span class="user-list__th-label">
+                  <button
+                    class="user-list__sort-btn user-list__sort-btn--increment"
+                  ></button>
+                  <button
+                    class="user-list__sort-btn user-list__sort-btn--decrement"
+                  ></button>
+                  Телефон
+                </span>
               </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
+              <div class="user-list__th user-list__th--date">
+                <span class="user-list__th-label">
+                  <button
+                    class="user-list__sort-btn user-list__sort-btn--increment"
+                  ></button>
+                  <button
+                    class="user-list__sort-btn user-list__sort-btn--decrement"
+                  ></button>
+                  Дата послед. входа
+                </span>
               </div>
             </div>
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
-                <input
-                  class="user-list__checkbox"
-                  type="checkbox"
-                  name="admins"
-                  id="check-2222222222"
-                />
-                <label for="check-2222222222" class="user-list__checkbox-label">
-                </label>
-                <a class="user-list__link"> 2222222222 </a>
-              </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
+            <div class="user-list__wrapper">
+              <div v-for="admin in data" class="user-list__tr">
+                <div class="user-list__td user-list__td--pt">
+                  <input
+                    class="user-list__checkbox"
+                    type="checkbox"
+                    name="admins"
+                    :id="'check-' + admin.id"
+                  />
+                  <label
+                    :for="'check-' + admin.id"
+                    class="user-list__checkbox-label"
+                  >
+                  </label>
+                  <a class="user-list__link"> {{admin.id}} </a>
                 </div>
+                <div class="user-list__td">
+                  <div class="user-list__avatar">
+                    <img src="" alt="" />
+                  </div>
 
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
-              </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
-                >
-              </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
-              </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
-              </div>
-            </div>
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
-                <input
-                  class="user-list__checkbox"
-                  type="checkbox"
-                  name="admins"
-                  id="check-6666655555"
-                />
-                <label for="check-6666655555" class="user-list__checkbox-label">
-                </label>
-                <a class="user-list__link"> 6666655555 </a>
-              </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
+                  <p class="user-list__name">
+                    {{admin.name}}
+                    <span>{{admin.name}}</span>
+                  </p>
                 </div>
-
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
-              </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
-                >
-              </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
-              </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
-              </div>
-            </div>
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
-                <input
-                  class="user-list__checkbox"
-                  type="checkbox"
-                  name="admins"
-                  id="check-7777777777"
-                />
-                <label for="check-7777777777" class="user-list__checkbox-label">
-                </label>
-                <a class="user-list__link"> 7777777777 </a>
-              </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
+                <div class="user-list__td">
+                  <a
+                    class="user-list__contact-info"
+                    href="mailto:newuser@gmail.com"
+                    >newuser@gmail.com</a
+                  >
                 </div>
-
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
-              </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
-                >
-              </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
-              </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
-              </div>
-            </div>
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
-                <input
-                  class="user-list__checkbox"
-                  type="checkbox"
-                  name="admins"
-                  id="check-6543546576"
-                />
-                <label for="check-6543546576" class="user-list__checkbox-label">
-                </label>
-                <a class="user-list__link"> 6543546576 </a>
-              </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
+                <div class="user-list__td">
+                  <a
+                    class="user-list__contact-info"
+                    :href="'tel:+' + admin.phone"
+                    >{{admin.phone}}</a
+                  >
                 </div>
-
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
-              </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
+                <div
+                  class="
+                    user-list__td
+                    user-list__td--date-admin
+                    user-list__td--wrap
+                    user-list__td--small-text
+                  "
                 >
-              </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
-              </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
-              </div>
-            </div>
-            <div class="user-list__tr">
-              <div class="user-list__td user-list__td--pt">
-                <input
-                  class="user-list__checkbox"
-                  type="checkbox"
-                  name="admins"
-                  id="check-654354657687"
-                />
-                <label
-                  for="check-654354657687"
-                  class="user-list__checkbox-label"
-                >
-                </label>
-                <a class="user-list__link"> 654354657687 </a>
-              </div>
-              <div class="user-list__td">
-                <div class="user-list__avatar">
-                  <img src="" alt="" />
+                  <time datetime="2020-07-12 23:45" class="user-list__time"
+                    >12 июня 2020 23:45</time
+                  >
+                  день назад
                 </div>
-
-                <p class="user-list__name">
-                  UserName
-                  <span>Константинпольский Константин</span>
-                </p>
-              </div>
-              <div class="user-list__td">
-                <a
-                  class="user-list__contact-info"
-                  href="mailto:newuser@gmail.com"
-                  >newuser@gmail.com</a
-                >
-              </div>
-              <div class="user-list__td">
-                <a class="user-list__contact-info" href="tel:+70008484801"
-                  >+7 (000) 848-48-01</a
-                >
-              </div>
-              <div
-                class="
-                  user-list__td user-list__td--wrap user-list__td--small-text
-                "
-              >
-                <time datetime="2020-07-12 23:45" class="user-list__time"
-                  >12 июня 2020 23:45</time
-                >
-                день назад
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section class="pagination">
-        <ul class="pagination__list">
-          <li class="pagination__item pagination__item--current">
-            <a class="pagination__link">1</a>
-          </li>
-          <li class="pagination__item">
-            <a href="#" class="pagination__link">2</a>
-          </li>
-          <li class="pagination__item">
-            <a href="#" class="pagination__link">3</a>
-          </li>
-          <li class="pagination__item">
-            <a href="#" class="pagination__link">4</a>
-          </li>
-          <li class="pagination__item">
-            <a href="#" class="pagination__link">5</a>
-          </li>
-          <li class="pagination__item pagination__item--dots">
-            <a href="#" class="pagination__link">...</a>
-          </li>
-          <li class="pagination__item">
-            <a href="#" class="pagination__link">30</a>
-          </li>
-        </ul>
-        <button class="pagination__more-btn">Дальше</button>
-      </section>
+        </section>
+        <section class="pagination">
+          <ul class="pagination__list">
+            <li
+              v-for="(page, index) in rawData.total"
+              v-if="index < 5"
+              class="pagination__item"
+              :class="{'pagination__item--current': page === rawData.current_page}"
+            >
+              <a :href="rawData.links[index + 1].url" class="pagination__link"
+                >{{page}}</a
+              >
+            </li>
+            <li
+              v-if="rawData.total > 5"
+              class="pagination__item pagination__item--dots"
+            >
+              <a class="pagination__link">...</a>
+            </li>
+            <li v-if="rawData.total > 5" class="pagination__item">
+              <a :href="rawData.last_page_url" class="pagination__link"
+                >{{rawData.total}}</a
+              >
+            </li>
+          </ul>
+          <a
+            v-if="rawData.next_page_url"
+            :href="rawData.next_page_url"
+            class="pagination__more-btn"
+            >Дальше</a
+          >
+        </section>
+      </div>
     </main>
     <div class="popup popup--admin-invite">
       <div class="popup__window">
@@ -665,6 +279,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="js/moment.min.js"></script>
     <script src="js/script.min.js"></script>
+    <script src="js/vue-list.min.js"></script>
   </body>
 </html>
