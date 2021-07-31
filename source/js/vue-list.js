@@ -33,6 +33,16 @@ const list = new Vue({
       } else {
         this.checked--;
       }
+
+      if (this.checked < 0) {
+        this.checked = 0;
+      }
+    },
+    setAllCheckboxes() {
+      this.checked = 0;
+    },
+    handleIdClick(e) {
+      console.log(e);
     },
   },
 });

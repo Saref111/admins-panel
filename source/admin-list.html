@@ -97,6 +97,7 @@
                   type="checkbox"
                   name="all-checked"
                   id="all-checked"
+                  @change="setAllCheckboxes"
                 />
                 <label
                   for="all-checked"
@@ -173,22 +174,23 @@
                   </div>
 
                   <p class="user-list__name">
-                    {{admin.name}}
+                    {{admin.user_name}}
                     <span>{{admin.name}}</span>
                   </p>
                 </div>
                 <div class="user-list__td">
                   <a
                     class="user-list__contact-info"
-                    href="mailto:newuser@gmail.com"
-                    >newuser@gmail.com</a
+                    :href="'mailto:' + admin.email"
+                    >{{admin.email}}</a
                   >
                 </div>
                 <div class="user-list__td">
                   <a
                     class="user-list__contact-info"
                     :href="'tel:+' + admin.phone"
-                    >{{admin.phone}}</a
+                    >{{admin.phone.startsWith('+') ? admin.phone : '+' +
+                    admin.phone}}</a
                   >
                 </div>
                 <div
@@ -216,19 +218,22 @@
               class="pagination__item"
               :class="{'pagination__item--current': page === rawData.current_page}"
             >
-              <a :href="rawData.links[index + 1].url" class="pagination__link"
+              <a
+                :href="rawData.path + '?page=' + page"
+                :data-page="page"
+                class="pagination__link"
                 >{{page}}</a
               >
             </li>
             <li
-              v-if="rawData.total > 5"
+              v-if="rawData.last_page > 5"
               class="pagination__item pagination__item--dots"
             >
               <a class="pagination__link">...</a>
             </li>
-            <li v-if="rawData.total > 5" class="pagination__item">
+            <li v-if="rawData.last_page > 5" class="pagination__item">
               <a :href="rawData.last_page_url" class="pagination__link"
-                >{{rawData.total}}</a
+                >{{rawData.last_page}}</a
               >
             </li>
           </ul>
