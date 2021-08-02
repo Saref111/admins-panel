@@ -39,7 +39,7 @@
         </nav>
       </div>
     </header>
-    <main class="page-main">
+    <main class="page-main" id="admins">
       <div id="list">
         <section class="filters">
           <div class="filters__search">
@@ -188,7 +188,7 @@
                 <div class="user-list__td">
                   <a
                     class="user-list__contact-info"
-                    :href="'tel:+' + admin.phone"
+                    :href="'tel:' + admin.phone"
                     >{{admin.phone.startsWith('+') ? admin.phone : '+' +
                     admin.phone}}</a
                   >
@@ -202,8 +202,8 @@
                   "
                 >
                   <time datetime="2020-07-12 23:45" class="user-list__time"
-                    >12 июня 2020 23:45</time
-                  >
+                    >{{moment(admin.lastLoginAt).format('DD MMM YYYY hh:mm')}}
+                  </time>
                   день назад
                 </div>
               </div>
@@ -213,27 +213,13 @@
         <section class="pagination">
           <ul class="pagination__list">
             <li
-              v-for="(page, index) in rawData.total"
-              v-if="index < 5"
+              v-for="(page, index) in getPagination"
               class="pagination__item"
-              :class="{'pagination__item--current': page === rawData.current_page}"
+              :class="{'pagination__item--current': page === rawData.current_page,
+            'pagination__item--dots': !page.url}"
             >
-              <a
-                :href="rawData.path + '?page=' + page"
-                :data-page="page"
-                class="pagination__link"
-                >{{page}}</a
-              >
-            </li>
-            <li
-              v-if="rawData.last_page > 5"
-              class="pagination__item pagination__item--dots"
-            >
-              <a class="pagination__link">...</a>
-            </li>
-            <li v-if="rawData.last_page > 5" class="pagination__item">
-              <a :href="rawData.last_page_url" class="pagination__link"
-                >{{rawData.last_page}}</a
+              <a :href="page.url" :data-page="page" class="pagination__link"
+                >{{page.label}}</a
               >
             </li>
           </ul>

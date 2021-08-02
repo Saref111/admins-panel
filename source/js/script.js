@@ -131,6 +131,8 @@ const toggleUserTabs = () => {
 };
 
 $(document).ready(() => {
+  moment.locale("ru");
+
   $('[data-picker="datepicker"]').datetimepicker({
     timepicker: false,
     format: "d-m-Y",

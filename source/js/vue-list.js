@@ -1,3 +1,14 @@
+const ROUTES = {
+  ADMINS: "https://dsscommunity.staj.fun/api/admin/admins/lists",
+  USERS: "https://dsscommunity.staj.fun/api/admin/users/lists",
+};
+const getRoute = () => {
+  const pageName = document.querySelector("MAIN").id;
+  console.log(pageName);
+
+  return ROUTES[pageName.toUpperCase()];
+};
+
 const list = new Vue({
   el: "#list",
   data: {
@@ -11,9 +22,7 @@ const list = new Vue({
     checked: 0,
   },
   async beforeMount() {
-    const res = await $.ajax(
-      "https://dsscommunity.staj.fun/api/admin/admins/lists"
-    );
+    const res = await $.ajax(getRoute());
 
     this.rawData = res.data;
     this.data = res.data.data;
@@ -43,6 +52,21 @@ const list = new Vue({
     },
     handleIdClick(e) {
       console.log(e);
+    },
+    moment(args) {
+      return moment(args);
+    },
+  },
+
+  computed: {
+    getPagination() {
+      let reply = [];
+      if (this.rawData.links) {
+        reply = [...this.rawData.links];
+        reply.shift();
+        reply.pop();
+      }
+      return reply;
     },
   },
 });
