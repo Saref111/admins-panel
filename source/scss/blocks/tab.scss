@@ -127,6 +127,15 @@
     font-size: 16px;
     line-height: 22px;
     color: #333333;
+
+    &--invalid,
+    &:invalid {
+      border: 1px solid #ee0202;
+
+      &:placeholder-shown {
+        border: 1px solid #000;
+      }
+    }
   }
 
   &__submit-button {

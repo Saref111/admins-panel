@@ -16,8 +16,6 @@ const list = new Vue({
     query: "",
     fromDate: "",
     toDate: "",
-    fromTime: "",
-    toTime: "",
     data: [],
     rawData: {},
     checked: 0,
@@ -32,15 +30,17 @@ const list = new Vue({
   mounted() {
     window.addEventListener("set-date", (e) => {
       this[e.detail.id] = e.detail.date;
+      this.search();
     });
     window.addEventListener("set-time", (e) => {
       this[e.detail.id] = e.detail.time;
+      this.search();
     });
   },
   methods: {
     checkUnit(e) {
       this.checked = 0;
-      document.querySelectorAll("[name='admins']").forEach((it) => {
+      this.$refs.list.querySelectorAll("[name='admins']").forEach((it) => {
         if (it.checked) {
           this.checked++;
         }
@@ -56,12 +56,10 @@ const list = new Vue({
       return moment(args);
     },
     async search() {
-      if (this.query.length > 2) {
-        const query = this.formQuery();
-        const resp = await this.sendRequest(query);
-        this.rawData = resp.data;
-        this.data = resp.data.data;
-      }
+      const query = this.formQuery();
+      const resp = await this.sendRequest(query);
+      this.rawData = resp.data;
+      this.data = resp.data.data;
     },
     async sendRequest(query) {
       const resp = await $.ajax(getRoute(query), {
@@ -76,6 +74,13 @@ const list = new Vue({
       let query = "user_login_order=" + this.orderByLogin;
       if (this.query) {
         query = query + "&search=" + this.query;
+      } else if (this.fromDate || this.fromTime) {
+        // query =
+        //   query +
+        //   "&last_login_from=" +
+        //   this.moment(this.fromDate).toISOString();
+        // console.log(query);
+        console.log(this.fromTime);
       }
       return query;
     },

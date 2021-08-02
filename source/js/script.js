@@ -168,6 +168,7 @@ $(document).ready(() => {
           )
           .join(""),
       };
+      console.log(d);
       const timeEvent = new CustomEvent("set-time", { detail: data });
       window.dispatchEvent(timeEvent);
     },
