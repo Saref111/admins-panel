@@ -49,8 +49,9 @@
               name="search"
               id="search"
               placeholder="Поиск"
+              @input="search"
             />
-            <button class="filters__search-btn"></button>
+            <button class="filters__search-btn" @click="clearQuery"></button>
           </div>
           <div class="filters__date-time">
             <label for="from-date" class="filters__label">Начиная с:</label>
@@ -107,44 +108,26 @@
                 </label>
               </div>
               <div class="user-list__th user-list__th--user">
-                <span class="user-list__th-label">
-                  <button
-                    class="user-list__sort-btn user-list__sort-btn--increment"
-                  ></button>
-                  <button
-                    class="user-list__sort-btn user-list__sort-btn--decrement"
-                  ></button>
-                  Пользователь
-                </span>
+                <span class="user-list__th-label"> Пользователь </span>
               </div>
               <div class="user-list__th user-list__th--mail">
-                <span class="user-list__th-label">
-                  <button
-                    class="user-list__sort-btn user-list__sort-btn--increment"
-                  ></button>
-                  <button
-                    class="user-list__sort-btn user-list__sort-btn--decrement"
-                  ></button>
-                  Почта
-                </span>
+                <span class="user-list__th-label"> Почта </span>
               </div>
               <div class="user-list__th user-list__th--tel">
-                <span class="user-list__th-label">
-                  <button
-                    class="user-list__sort-btn user-list__sort-btn--increment"
-                  ></button>
-                  <button
-                    class="user-list__sort-btn user-list__sort-btn--decrement"
-                  ></button>
-                  Телефон
-                </span>
+                <span class="user-list__th-label"> Телефон </span>
               </div>
               <div class="user-list__th user-list__th--date">
                 <span class="user-list__th-label">
                   <button
+                    value="desc"
                     class="user-list__sort-btn user-list__sort-btn--increment"
+                    :class="{'user-list__sort-btn--active': orderByLogin === 'desc'}"
+                    @click="setOrderByLogin"
                   ></button>
                   <button
+                    value="asc"
+                    @click="setOrderByLogin"
+                    :class="{'user-list__sort-btn--active': orderByLogin === 'asc'}"
                     class="user-list__sort-btn user-list__sort-btn--decrement"
                   ></button>
                   Дата послед. входа
