@@ -99,6 +99,22 @@
       &:nth-of-type(2) {
         width: 52px;
       }
+
+      &[type="time"] {
+        width: 55px;
+        position: relative;
+        &::-webkit-calendar-picker-indicator {
+          position: absolute;
+          opacity: 0;
+        }
+      }
+      &[type="date"] {
+        position: relative;
+        &::-webkit-calendar-picker-indicator {
+          position: absolute;
+          opacity: 0;
+        }
+      }
     }
   }
 

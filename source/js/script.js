@@ -131,47 +131,41 @@ const toggleUserTabs = () => {
 };
 
 $(document).ready(() => {
-  moment.locale("ru");
+  $("#fromDate").on("input", function (e) {
+    const data = {
+      date: e.target.value,
+      id: $(e.target).prop("id"),
+    };
 
-  $('[data-picker="datepicker"]').datetimepicker({
-    timepicker: false,
-    format: "d-m-Y",
-    mask: true,
-    onClose: function (d, el) {
-      const data = {
-        date: d,
-        id: el
-          .prop("id")
-          .split("-")
-          .map((it, i) =>
-            i === 1 ? it.slice(0, 1).toUpperCase() + it.slice(1) : it
-          )
-          .join(""),
-      };
-      const dateEvent = new CustomEvent("set-date", { detail: data });
-      window.dispatchEvent(dateEvent);
-    },
+    const timeEvent = new CustomEvent("set-date", { detail: data });
+    window.dispatchEvent(timeEvent);
+  });
+  $("#toDate").on("input", function (e) {
+    const data = {
+      date: e.target.value,
+      id: $(e.target).prop("id"),
+    };
+
+    const timeEvent = new CustomEvent("set-date", { detail: data });
+    window.dispatchEvent(timeEvent);
   });
 
-  $('[data-picker="timepicker"]').datetimepicker({
-    datepicker: false,
-    format: "H:m",
-    mask: true,
-    onClose: function (d, el) {
-      const data = {
-        time: d,
-        id: el
-          .prop("id")
-          .split("-")
-          .map((it, i) =>
-            i === 1 ? it.slice(0, 1).toUpperCase() + it.slice(1) : it
-          )
-          .join(""),
-      };
-      console.log(d);
-      const timeEvent = new CustomEvent("set-time", { detail: data });
-      window.dispatchEvent(timeEvent);
-    },
+  $("#fromTime").on("input", function (e) {
+    const data = {
+      time: e.target.value,
+      id: $(e.target).prop("id"),
+    };
+    const timeEvent = new CustomEvent("set-time", { detail: data });
+    window.dispatchEvent(timeEvent);
+  });
+
+  $("#toTime").on("input", function (e) {
+    const data = {
+      time: e.target.value,
+      id: $(e.target).prop("id"),
+    };
+    const timeEvent = new CustomEvent("set-time", { detail: data });
+    window.dispatchEvent(timeEvent);
   });
 
   $('[name="admins"]').change(function (e) {
@@ -235,15 +229,36 @@ $(document).ready(() => {
   });
 
   $("#user-avatar").on("input", function (e) {
+    const wrapper = $(this).closest(".tab__avatar");
     const reader = new FileReader();
     reader.onloadend = () => {
-      $(this).closest(".tab__avatar").find("img").prop("src", reader.result);
+      $(this)
+        .closest(".tab__avatar")
+        .find("img")
+        .addClass("tab__avatar-wrapper--set");
+      // .prop("src", reader.result);
     };
 
     reader.readAsDataURL(e.target.files[0]);
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+
+    axios.post("/", {
+      data: formData,
+      onUploadProgress: function (progressEvent) {
+        $(wrapper)
+          .closest(".tab__avatar")
+          .find("meter")
+          .prop("value", progressEvent);
+      },
+    });
 
     $(".tab__avatar-remove-label").click(function (e) {
-      $(e.target).closest(".tab__avatar").find("img").removeAttr("src");
+      $(e.target)
+        .closest(".tab__avatar")
+        .find("img")
+        .removeClass("tab__avatar-wrapper--set")
+        .removeAttr("src");
     });
   });
 

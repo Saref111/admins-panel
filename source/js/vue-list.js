@@ -15,14 +15,17 @@ const list = new Vue({
   data: {
     query: "",
     fromDate: "",
+    fromTime: "",
     toDate: "",
+    toTime: "",
     data: [],
     rawData: {},
     checked: 0,
     orderByLogin: "asc",
   },
   async beforeMount() {
-    const res = await this.sendRequest();
+    const query = this.formQuery();
+    const res = await this.sendRequest(query);
 
     this.rawData = res.data;
     this.data = res.data.data;
@@ -30,10 +33,13 @@ const list = new Vue({
   mounted() {
     window.addEventListener("set-date", (e) => {
       this[e.detail.id] = e.detail.date;
+
+      console.log(e.detail);
       this.search();
     });
     window.addEventListener("set-time", (e) => {
       this[e.detail.id] = e.detail.time;
+
       this.search();
     });
   },
@@ -74,13 +80,21 @@ const list = new Vue({
       let query = "user_login_order=" + this.orderByLogin;
       if (this.query) {
         query = query + "&search=" + this.query;
-      } else if (this.fromDate || this.fromTime) {
-        // query =
-        //   query +
-        //   "&last_login_from=" +
-        //   this.moment(this.fromDate).toISOString();
-        // console.log(query);
-        console.log(this.fromTime);
+      }
+      if (this.fromDate || this.fromTime) {
+        console.log({
+          hour: this.fromTime.split(":")[0],
+          minute: this.fromTime.split(":")[1],
+        });
+        const time = this.moment(this.fromDate || new Date()).set({
+          hour: this.fromTime.split(":")[0],
+          minute: this.fromTime.split(":")[1],
+        });
+        query = query + "&last_login_from=" + this.moment(time).toISOString();
+        console.log(query);
+      }
+      if (this.to) {
+        query = query + "&last_login_to=" + this.moment(this.to).toISOString();
       }
       return query;
     },

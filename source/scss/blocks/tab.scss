@@ -30,28 +30,29 @@
   }
 
   &__avatar-wrapper {
+    display: none;
     width: 64px;
     height: 64px;
     overflow: hidden;
     border-radius: 50%;
     background-color: #dadada;
     margin-right: 20px;
-
-    &[src] {
+    & {
       & ~ .tab__avatar-controls > .tab__avatar-add {
-        display: none;
+        display: block;
       }
       & ~ .tab__avatar-controls > .tab__avatar-remove {
-        display: block;
+        display: none;
       }
     }
 
-    &:not([src]) {
+    &--set {
+      display: block;
       & ~ .tab__avatar-controls > .tab__avatar-add {
-        display: block;
+        display: none;
       }
       & ~ .tab__avatar-controls > .tab__avatar-remove {
-        display: none;
+        display: block;
       }
     }
   }
@@ -138,7 +139,6 @@
     line-height: 22px;
     color: #333333;
 
-    &--invalid,
     &:invalid {
       border: 1px solid #ee0202;
 
