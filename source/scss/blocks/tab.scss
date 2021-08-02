@@ -113,6 +113,16 @@
     margin-bottom: 22px;
   }
 
+  &__label-error {
+    display: none;
+    color: #ee0202;
+
+    // .tab__input--invalid ~ &,
+    // .tab__input:invalid:not(:placeholder-shown) ~ & {
+    //   display: block;
+    // }
+  }
+
   &__input {
     display: block;
     width: 320px;
@@ -132,8 +142,23 @@
     &:invalid {
       border: 1px solid #ee0202;
 
+      & ~ .tab__label-error {
+        display: block;
+      }
+
       &:placeholder-shown {
         border: 1px solid #000;
+
+        & ~ .tab__label-error {
+          display: none;
+        }
+      }
+    }
+
+    &--invalid {
+      border: 1px solid #ee0202 !important;
+      & ~ .tab__label-error {
+        display: block !important;
       }
     }
   }
