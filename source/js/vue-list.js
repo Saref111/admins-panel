@@ -22,7 +22,13 @@ const list = new Vue({
     checked: 0,
   },
   async beforeMount() {
-    const res = await $.ajax(getRoute());
+    console.log(getRoute());
+    const res = await $.ajax(getRoute(), {
+      headers: {
+        Accept: "application/json; charset=utf-8",
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
 
     this.rawData = res.data;
     this.data = res.data.data;

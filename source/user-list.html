@@ -140,7 +140,11 @@
                 </span>
               </div>
 
-              <div class="user-list__th user-list__th--date">
+              <div
+                class="
+                  user-list__th user-list__th--last-date user-list__th--date
+                "
+              >
                 <span class="user-list__th-label">
                   <button
                     class="user-list__sort-btn user-list__sort-btn--increment"
@@ -153,7 +157,7 @@
               </div>
             </div>
             <div class="user-list__wrapper">
-              <div class="user-list__tr">
+              <div v-for="user in data" class="user-list__tr">
                 <div
                   class="user-list__td user-list__td--min-w32 user-list__td--pt"
                 >
@@ -161,31 +165,38 @@
                     class="user-list__checkbox"
                     type="checkbox"
                     name="admins"
-                    id="check-651651616"
+                    :id="'check-' + user.id"
                   />
                   <label
-                    for="check-651651616"
+                    :for="'check-' + user.id"
                     class="user-list__checkbox-label"
                   >
                   </label>
                 </div>
-                <div class="user-list__td user-list__td--mr-27">
+                <div
+                  class="user-list__td user-list__td--w user-list__td--mr-27"
+                >
                   <div class="user-list__avatar">
                     <img src="" alt="" />
                   </div>
 
                   <p class="user-list__name">
-                    UserName
-                    <a href="#" class="user-list__user-id">651651616</a>
+                    {{user.name}}
+                    <a href="#" class="user-list__user-id">{{user.id}}</a>
                   </p>
                 </div>
-                <div class="user-list__td user-list__td--mr-35">
-                  <a class="user-list__contact-info" href="tel:+70008484801"
-                    >+7 (000) 848-48-01</a
+                <div
+                  class="user-list__td user-list__td--w111 user-list__td--mr-35"
+                >
+                  <a class="user-list__contact-info" :href="'tel:' + user.phone"
+                    >{{user.phone.startsWith('+') ? user.phone : '+' +
+                    user.phone}}</a
                   >
                 </div>
                 <div class="user-list__td">
-                  <span class="user-list__reports-count">16</span>
+                  <span class="user-list__reports-count"
+                    >{{user.reports_count}}</span
+                  >
                 </div>
                 <div class="user-list__td user-list__td--mr-27">
                   <p class="user-list__report-info">
@@ -197,170 +208,14 @@
                 </div>
                 <div
                   class="
-                    user-list__td user-list__td--wrap user-list__td--small-text
+                    user-list__td
+                    user-list__td--wrap
+                    user-list__td--small-text
+                    user-list__td--w
                   "
                 >
                   <time datetime="2020-07-12 23:45" class="user-list__time"
-                    >12 июня 2020 23:45</time
-                  >
-                  день назад
-                </div>
-              </div>
-              <div class="user-list__tr">
-                <div
-                  class="user-list__td user-list__td--min-w32 user-list__td--pt"
-                >
-                  <input
-                    class="user-list__checkbox"
-                    type="checkbox"
-                    name="admins"
-                    id="check-651651616"
-                  />
-                  <label
-                    for="check-651651616"
-                    class="user-list__checkbox-label"
-                  >
-                  </label>
-                </div>
-                <div class="user-list__td user-list__td--mr-27">
-                  <div class="user-list__avatar">
-                    <img src="" alt="" />
-                  </div>
-
-                  <p class="user-list__name">
-                    UserName
-                    <a href="#" class="user-list__user-id">651651616</a>
-                  </p>
-                </div>
-                <div class="user-list__td user-list__td--mr-35">
-                  <a class="user-list__contact-info" href="tel:+70008484801"
-                    >+7 (000) 848-48-01</a
-                  >
-                </div>
-                <div class="user-list__td">
-                  <span class="user-list__reports-count">16</span>
-                </div>
-                <div class="user-list__td user-list__td--mr-27">
-                  <p class="user-list__report-info">
-                    <a href="#" class="user-list__report-link"
-                      >Chevrolet Aveo 1.2 МТ (86 л.с.)</a
-                    >
-                    VIN: 12489947506048374 12/05/2021 11:34 (MAXI)
-                  </p>
-                </div>
-                <div
-                  class="
-                    user-list__td user-list__td--wrap user-list__td--small-text
-                  "
-                >
-                  <time datetime="2020-07-12 23:45" class="user-list__time"
-                    >12 июня 2020 23:45</time
-                  >
-                  день назад
-                </div>
-              </div>
-              <div class="user-list__tr">
-                <div
-                  class="user-list__td user-list__td--min-w32 user-list__td--pt"
-                >
-                  <input
-                    class="user-list__checkbox"
-                    type="checkbox"
-                    name="admins"
-                    id="check-651651616"
-                  />
-                  <label
-                    for="check-651651616"
-                    class="user-list__checkbox-label"
-                  >
-                  </label>
-                </div>
-                <div class="user-list__td user-list__td--mr-27">
-                  <div class="user-list__avatar">
-                    <img src="" alt="" />
-                  </div>
-
-                  <p class="user-list__name">
-                    UserName
-                    <a href="#" class="user-list__user-id">651651616</a>
-                  </p>
-                </div>
-                <div class="user-list__td user-list__td--mr-35">
-                  <a class="user-list__contact-info" href="tel:+70008484801"
-                    >+7 (000) 848-48-01</a
-                  >
-                </div>
-                <div class="user-list__td">
-                  <span class="user-list__reports-count">16</span>
-                </div>
-                <div class="user-list__td user-list__td--mr-27">
-                  <p class="user-list__report-info">
-                    <a href="#" class="user-list__report-link"
-                      >Chevrolet Aveo 1.2 МТ (86 л.с.)</a
-                    >
-                    VIN: 12489947506048374 12/05/2021 11:34 (MAXI)
-                  </p>
-                </div>
-                <div
-                  class="
-                    user-list__td user-list__td--wrap user-list__td--small-text
-                  "
-                >
-                  <time datetime="2020-07-12 23:45" class="user-list__time"
-                    >12 июня 2020 23:45</time
-                  >
-                  день назад
-                </div>
-              </div>
-              <div class="user-list__tr">
-                <div
-                  class="user-list__td user-list__td--min-w32 user-list__td--pt"
-                >
-                  <input
-                    class="user-list__checkbox"
-                    type="checkbox"
-                    name="admins"
-                    id="check-651651616"
-                  />
-                  <label
-                    for="check-651651616"
-                    class="user-list__checkbox-label"
-                  >
-                  </label>
-                </div>
-                <div class="user-list__td user-list__td--mr-27">
-                  <div class="user-list__avatar">
-                    <img src="" alt="" />
-                  </div>
-
-                  <p class="user-list__name">
-                    UserName
-                    <a href="#" class="user-list__user-id">651651616</a>
-                  </p>
-                </div>
-                <div class="user-list__td user-list__td--mr-35">
-                  <a class="user-list__contact-info" href="tel:+70008484801"
-                    >+7 (000) 848-48-01</a
-                  >
-                </div>
-                <div class="user-list__td">
-                  <span class="user-list__reports-count">16</span>
-                </div>
-                <div class="user-list__td user-list__td--mr-27">
-                  <p class="user-list__report-info">
-                    <a href="#" class="user-list__report-link"
-                      >Chevrolet Aveo 1.2 МТ (86 л.с.)</a
-                    >
-                    VIN: 12489947506048374 12/05/2021 11:34 (MAXI)
-                  </p>
-                </div>
-                <div
-                  class="
-                    user-list__td user-list__td--wrap user-list__td--small-text
-                  "
-                >
-                  <time datetime="2020-07-12 23:45" class="user-list__time"
-                    >12 июня 2020 23:45</time
+                    >{{moment(user.lastLoginAt).format('DD MMM YYYY')}}</time
                   >
                   день назад
                 </div>
@@ -368,30 +223,16 @@
             </div>
           </div>
         </section>
-        <!-- <section class="pagination">
+        <section class="pagination">
           <ul class="pagination__list">
             <li
-              v-for="(page, index) in rawData.total"
-              v-if="index < 5"
+              v-for="(page, index) in getPagination"
               class="pagination__item"
-              :class="{'pagination__item--current': page === rawData.current_page}"
+              :class="{'pagination__item--current': page === rawData.current_page,
+            'pagination__item--dots': !page.url}"
             >
-              <a
-                :href="rawData.path + '?page=' + page"
-                :data-page="page"
-                class="pagination__link"
-                >{{page}}</a
-              >
-            </li>
-            <li
-              v-if="rawData.last_page > 5"
-              class="pagination__item pagination__item--dots"
-            >
-              <a class="pagination__link">...</a>
-            </li>
-            <li v-if="rawData.last_page > 5" class="pagination__item">
-              <a :href="rawData.last_page_url" class="pagination__link"
-                >{{rawData.last_page}}</a
+              <a :href="page.url" :data-page="page" class="pagination__link"
+                >{{page.label}}</a
               >
             </li>
           </ul>
@@ -401,7 +242,7 @@
             class="pagination__more-btn"
             >Дальше</a
           >
-        </section> -->
+        </section>
       </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>

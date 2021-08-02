@@ -117,6 +117,9 @@
       position: relative;
       left: -60px;
     }
+    &--last-date:last-child {
+      margin-right: 20px;
+    }
   }
 
   &__th-label {
@@ -324,6 +327,15 @@
 
     &--date:last-child {
       margin-right: 110px;
+    }
+
+    &--w {
+      width: 160px !important;
+      min-width: 160px !important;
+    }
+    &--w111 {
+      width: 111px !important;
+      min-width: 111px !important;
     }
   }
 
