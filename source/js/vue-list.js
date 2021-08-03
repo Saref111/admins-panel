@@ -14,6 +14,10 @@ const adminFilters = Vue.component("admin-filters", {
   data() {
     return {
       query: "",
+      fromDate: "",
+      fromTime: "",
+      toDate: "",
+      toTime: "",
     };
   },
   props: {
@@ -21,18 +25,37 @@ const adminFilters = Vue.component("admin-filters", {
       type: Function,
       default: () => {},
     },
-    checked: {
-      type: String,
+    checkedCount: {
+      type: [String, Number],
       default: "0",
+    },
+    orderByLogin: {
+      type: String,
+      default: "asc",
     },
   },
   methods: {
     search() {
+      const query = this.formQuery();
       this.searchCallback(query);
     },
 
     clearQuery() {
       this.query = "";
+    },
+    formQuery() {
+      let query = "user_login_order=" + this.orderByLogin;
+      if (this.query) {
+        query = query + "&search=" + this.query;
+      }
+      if (this.fromDate || this.fromTime) {
+        const time = fromDate
+          ? new Date(fromDate + " " + fromTime)
+          : new Date(fromTime);
+
+        query = query + "&last_login_from=" + time.toISOString();
+      }
+      return query;
     },
   },
   template: `<section class="filters">
@@ -49,15 +72,15 @@ const adminFilters = Vue.component("admin-filters", {
               </div>
               <div class="filters__date-time">
                 <label for="from-date" class="filters__label">Начиная с:</label>
-                <input type="date" name="from-date" id="fromDate" />
-                <input type="time" name="from-time" id="fromTime" />
+                <input type="date" name="from-date" id="fromDate" v-model="fromDate"/>
+                <input type="time" name="from-time" id="fromTime" v-model="fromTime"/>
               </div>
               <div class="filters__date-time">
                 <label for="to-date" class="filters__label">до:</label>
-                <input type="date" name="to-date" id="toDate" />
-                <input type="time" name="to-time" id="toTime" />
+                <input type="date" name="to-date" id="toDate" v-model="toDate"/>
+                <input type="time" name="to-time" id="toTime" v-model="toTime"/>
               </div>
-              <div class="filters__checked">Выбрано: <span>{{checked}}</span></div>
+              <div class="filters__checked">Выбрано: <span>{{checkedCount}}</span></div>
               <button class="filters__btn filters__btn--min-width">
                 Выгрузить в Excel
               </button>
@@ -119,38 +142,27 @@ const adminList = Vue.component("admin-list", {
       data: [],
       rawData: {},
       checked: 0,
-      orderByLogin: "asc",
+      orderByLogin: "acs",
     };
   },
   async beforeMount() {
-    const query = this.formQuery();
+    const query = "user_login_order=asc";
     const res = await this.sendRequest(query);
 
     this.rawData = res.data;
     this.data = res.data.data;
   },
-  mounted() {
-    window.addEventListener("set-date", (e) => {
-      this[e.detail.id] = e.detail.date;
-
-      console.log(e.detail);
-      this.search();
-    });
-    window.addEventListener("set-time", (e) => {
-      this[e.detail.id] = e.detail.time;
-      console.log(e.detail);
-
-      this.search();
-    });
-  },
   methods: {
     checkUnit(e) {
       this.checked = 0;
-      this.$refs.list.querySelectorAll("[name='admins']").forEach((it) => {
-        if (it.checked) {
-          this.checked++;
-        }
-      });
+      e.target
+        .closest("section")
+        .querySelectorAll("[name='admins']")
+        .forEach((it) => {
+          if (it.checked) {
+            this.checked++;
+          }
+        });
     },
     setAllCheckboxes() {
       this.checked = 0;
@@ -161,8 +173,7 @@ const adminList = Vue.component("admin-list", {
     moment(args) {
       return moment(args);
     },
-    async search() {
-      const query = this.formQuery();
+    async search(query) {
       const resp = await this.sendRequest(query);
       this.rawData = resp.data;
       this.data = resp.data.data;
@@ -176,23 +187,6 @@ const adminList = Vue.component("admin-list", {
       });
       return { ...resp };
     },
-    formQuery() {
-      let query = "user_login_order=" + this.orderByLogin;
-      if (this.query) {
-        query = query + "&search=" + this.query;
-      }
-      if (this.fromDate || this.fromTime) {
-        const time = this.fromDate
-          ? new Date(this.fromDate + " " + this.fromTime)
-          : new Date(this.fromTime);
-
-        query = query + "&last_login_from=" + time.toISOString();
-      }
-      if (this.to) {
-        query = query + "&last_login_to=" + this.moment(this.to).toISOString();
-      }
-      return query;
-    },
     setOrderByLogin(e) {
       this.orderByLogin = e.target.value;
       const query = this.formQuery();
@@ -203,7 +197,7 @@ const adminList = Vue.component("admin-list", {
     "admin-filter": adminFilters,
     Pagination: pag,
   },
-  template: `<section class="user-list"><admin-filter/>
+  template: `<section class="user-list"><admin-filter :checkedCount="checked" :search-callback="search" :orderByLogin="orderByLogin"/>
               <div class="user-list__table">
                 <div class="user-list__tr user-list__tr--heading">
                   <div class="user-list__th user-list__th--id">
