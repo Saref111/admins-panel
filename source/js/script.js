@@ -153,8 +153,9 @@ $(document).ready(() => {
   $("#fromTime").on("input", function (e) {
     const data = {
       time: e.target.value,
-      id: $(e.target).prop("id"),
+      id: $("#fromTime").prop("id"),
     };
+
     const timeEvent = new CustomEvent("set-time", { detail: data });
     window.dispatchEvent(timeEvent);
   });
@@ -162,8 +163,9 @@ $(document).ready(() => {
   $("#toTime").on("input", function (e) {
     const data = {
       time: e.target.value,
-      id: $(e.target).prop("id"),
+      id: $("#toTime").prop("id"),
     };
+
     const timeEvent = new CustomEvent("set-time", { detail: data });
     window.dispatchEvent(timeEvent);
   });
