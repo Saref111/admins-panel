@@ -247,49 +247,57 @@
                   for="admin-search"
                   >Поиск администраторов</label
                 >
-                <input
-                  class="tab__checkbox"
-                  type="checkbox"
-                  name="users"
-                  id="common-data-review"
-                />
-                <label
-                  class="tab__label tab__label--checkbox"
-                  for="common-data-review"
-                  >Просмотр общих данных</label
-                ><input
-                  class="tab__checkbox"
-                  type="checkbox"
-                  name="users"
-                  id="common-data-edit"
-                />
-                <label
-                  class="tab__label tab__label--checkbox tab__label--inner"
-                  for="common-data-edit"
-                  >Редактирование общих данных</label
-                >
-                <input
-                  class="tab__checkbox"
-                  type="checkbox"
-                  name="users"
-                  id="access-review"
-                />
-                <label
-                  class="tab__label tab__label--checkbox"
-                  for="access-review"
-                  >Просмотр доступов</label
-                >
-                <input
-                  class="tab__checkbox"
-                  type="checkbox"
-                  name="users"
-                  id="access-edit"
-                />
-                <label
-                  class="tab__label tab__label--checkbox tab__label--inner"
-                  for="access-edit"
-                  >Редактирование доступов</label
-                >
+                <div class="tab__checkbox-tree">
+                  <input
+                    class="tab__checkbox tab__checkbox--has-inner"
+                    type="checkbox"
+                    name="users"
+                    id="common-data-review"
+                  />
+                  <label
+                    class="tab__label tab__label--checkbox"
+                    for="common-data-review"
+                    >Просмотр общих данных</label
+                  ><input
+                    class="tab__checkbox tab__checkbox--inner"
+                    type="checkbox"
+                    name="users"
+                    id="common-data-edit"
+                    disabled
+                  />
+                  <label
+                    class="tab__label tab__label--checkbox tab__label--inner"
+                    for="common-data-edit"
+                    >Редактирование общих данных</label
+                  >
+                </div>
+                <div class="tab__checkbox-tree">
+                  <input
+                    class="tab__checkbox tab__checkbox--has-inner"
+                    type="checkbox"
+                    name="users"
+                    id="access-review"
+                  />
+                  <label
+                    class="
+                      tab__label tab__label--checkbox tab__label--has-inner
+                    "
+                    for="access-review"
+                    >Просмотр доступов</label
+                  >
+                  <input
+                    class="tab__checkbox tab__checkbox--inner"
+                    type="checkbox"
+                    name="users"
+                    id="access-edit"
+                    disabled
+                  />
+                  <label
+                    class="tab__label tab__label--checkbox tab__label--inner"
+                    for="access-edit"
+                    >Редактирование доступов</label
+                  >
+                </div>
                 <input
                   class="tab__checkbox"
                   type="checkbox"

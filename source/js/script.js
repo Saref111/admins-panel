@@ -130,6 +130,22 @@ const toggleUserTabs = () => {
   });
 };
 
+const initSubCheckboxes = () => {
+  $(".tab__checkbox--has-inner").on("input", function (e) {
+    const c = $(this)
+      .closest(".tab__checkbox-tree")
+      .find(".tab__checkbox--inner")
+      .prop("disabled", !e.target.checked);
+
+    if (!e.target.checked) {
+      $(this)
+        .closest(".tab__checkbox-tree")
+        .find(".tab__checkbox--inner")
+        .prop("checked", false);
+    }
+  });
+};
+
 $(document).ready(() => {
   $("#fromDate").on("input", function (e) {
     const data = {
@@ -264,6 +280,14 @@ $(document).ready(() => {
     });
   });
 
+  if ($(".user-tabs")) {
+    $(".user-tabs .user-tabs__item")
+      .first()
+      .addClass("user-tabs__item--current");
+    $(".user-tabs .user-tabs__tabs-list .tab").first().addClass("tab--current");
+  }
+
+  initSubCheckboxes();
   validateForgotPassPopup();
   showRegistrationPopup();
   showAuthPopup();
