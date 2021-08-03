@@ -23,6 +23,19 @@
 
   &__legend {
     margin-bottom: 3px;
+
+    &--shadow {
+      font-family: "Segoe UI", sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 24px;
+      /* identical to box height, or 133% */
+      margin: 0;
+      padding: 0;
+      color: rgba(51, 51, 51, 0.5);
+      margin-bottom: 20px;
+    }
   }
   &__avatar {
     display: flex;
@@ -112,6 +125,43 @@
     line-height: 22px;
     color: #333333;
     margin-bottom: 22px;
+
+    &--checkbox {
+      margin: 0;
+      margin-bottom: 16px;
+      margin-left: 24px;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: "";
+        width: 16px;
+        height: 16px;
+        top: 5px;
+        left: -25px;
+        background: linear-gradient(180deg, #ffffff 0%, #ebebeb 100%);
+        border-radius: 2px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+      }
+
+      input:checked + &::before {
+        position: absolute;
+        content: "";
+        width: 16px;
+        height: 16px;
+        top: 5px;
+        left: -25px;
+        background-color: #1d85d0;
+        border: 1px solid #1d85d0;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='10' viewBox='0 0 12 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.21667 6.16667L10.1333 0.25L11.9667 2.1L4.21667 9.85L0.0166667 5.65L1.86667 3.81667L4.21667 6.16667Z' fill='white'/%3E%3C/svg%3E%0A");
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    &--inner {
+      margin-left: 50px;
+    }
   }
 
   &__label-error {
@@ -183,6 +233,12 @@
     line-height: 22px;
     text-align: center;
     color: #333333;
+
+    &--absolute {
+      position: absolute;
+      bottom: -50px;
+      left: 20px;
+    }
   }
 
   &__error {
@@ -222,5 +278,23 @@
         display: block;
       }
     }
+    &--multicolumn {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      max-height: 400px;
+    }
+  }
+
+  &__fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__checkbox {
+    display: none;
   }
 }
