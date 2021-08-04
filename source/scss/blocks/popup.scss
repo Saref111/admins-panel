@@ -81,6 +81,10 @@
       max-width: 180px;
       margin-left: 25px;
     }
+
+    &--unblock {
+      background-color: #219653;
+    }
   }
   &__close {
     @include button-reset;
