@@ -120,6 +120,12 @@
     &--last-date:last-child {
       margin-right: 20px;
     }
+    &--date-first {
+      margin-left: 0 !important;
+    }
+    &--action {
+      margin-left: 50px !important;
+    }
   }
 
   &__th-label {
@@ -337,6 +343,19 @@
       width: 111px !important;
       min-width: 111px !important;
     }
+    &--date-first {
+      margin-left: 0 !important;
+      max-height: 20px;
+    }
+    &--empty {
+      margin-right: 6px !important;
+    }
+
+    &--action {
+      margin-right: auto;
+      margin-left: -28px !important;
+      width: auto !important;
+    }
   }
 
   &__reports-count {
@@ -453,6 +472,55 @@
     &--success {
       color: rgba(51, 51, 51, 0.5);
       width: 90px;
+    }
+  }
+
+  &__actions {
+    margin: 0;
+  }
+
+  &__action-wrapper {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: rgba(51, 51, 51, 0.5);
+
+    & del {
+      color: #000;
+    }
+
+    & ins {
+      color: #000;
+      text-decoration: none;
+      position: relative;
+      padding-left: 7px;
+
+      &::before {
+        position: absolute;
+        content: ">";
+        left: -2px;
+      }
+    }
+  }
+
+  &__action-link {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #3072c4;
+
+    &--tel {
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 16px;
+
+      color: #000;
     }
   }
 }
