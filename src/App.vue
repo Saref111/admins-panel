@@ -7,7 +7,6 @@
 <script>
 import AdminsList from "./components/AdminsList.vue";
 
-
 export default {
   name: "App",
   components: {

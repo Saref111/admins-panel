@@ -96,7 +96,7 @@
             "
           >
             <time datetime="2020-07-12 23:45" class="user-list__time"
-              >{{ moment(admin.lastLoginAt).format("DD MMM YYYY hh:mm") }}
+              >{{ $moment(admin.lastLoginAt).format("DD MMM YYYY hh:mm") }}
             </time>
             день назад
           </div>
@@ -156,16 +156,13 @@ export default {
     handleIdClick(e) {
       console.log(e);
     },
-    moment(args) {
-      return moment(args);
-    },
     async search(query) {
       const resp = await this.sendRequest(query);
       this.rawData = resp.data;
       this.data = resp.data.data;
     },
     async sendRequest(query) {
-      const resp = await $.ajax(this.url + "?" + query, {
+      const resp = await this.$$.ajax(this.url + "?" + query, {
         headers: {
           Accept: "application/json; charset=utf-8",
           "Content-Type": "application/json; charset=utf-8",
