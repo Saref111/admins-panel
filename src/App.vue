@@ -1,12 +1,18 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <AdminsList url="https://dsscommunity.staj.fun/api/admin/admins/lists" />
+  </div>
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
+import AdminsList from "./components/AdminsList.vue";
+
 
 export default {
   name: "App",
+  components: {
+    AdminsList,
+  },
 };
 </script>
 
