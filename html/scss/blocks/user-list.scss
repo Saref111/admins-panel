@@ -10,7 +10,6 @@
     padding: 9px 12px;
     padding-top: 0;
     padding-bottom: 1px;
-    min-height: 50px;
 
     border-bottom: 1px solid #eaeaea;
 
@@ -381,7 +380,6 @@
     font-size: 12px;
     line-height: 16px;
     color: #333333;
-    text-align: left;
 
     & span {
       display: block;
@@ -436,7 +434,6 @@
     line-height: 16px;
     color: #333333;
     padding-top: 1px;
-    text-align: left;
   }
 
   &__report-link {
@@ -480,7 +477,6 @@
 
   &__actions {
     margin: 0;
-    text-align: left;
   }
 
   &__action-wrapper {
