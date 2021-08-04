@@ -1,0 +1,46 @@
+.nav {
+    padding: 16px;
+    padding-top: 11px;
+    padding-bottom: 0;
+
+    &__list {
+        @include list-reset;
+
+        display: flex;
+    }
+
+    &__item {
+        margin-right: 36px;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            content: "";
+            width: 1px;
+            height: 24px;
+            background-color: rgba(0, 0, 0, 0.1);
+            right: -18px;
+        }
+
+        &:last-child {
+            margin-right: 0;
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+    &__link {
+        font-family: 'Segoe UI', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        color: #333333;
+
+        &--current {
+            font-weight: 600;
+        }
+    }
+}

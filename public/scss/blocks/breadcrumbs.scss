@@ -1,0 +1,40 @@
+.breadcrumbs {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+
+  &__list {
+    @include list-reset;
+
+    display: flex;
+    padding: 7px 20px;
+    padding-bottom: 0;
+  }
+
+  &__item {
+    margin-right: 15px;
+    position: relative;
+    line-height: 24px;
+    &:not(:last-child)::after {
+      position: absolute;
+      content: ">";
+      top: 5px;
+      right: -11px;
+      font-family: "Segoe UI", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 16px;
+      color: rgba(51, 51, 51, 0.5);
+    }
+  }
+
+  &__link {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(51, 51, 51, 0.5);
+  }
+}
