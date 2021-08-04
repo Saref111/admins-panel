@@ -237,6 +237,10 @@
     }
   }
 
+  &__success {
+    color: green;
+  }
+
   &__error {
     display: none;
     position: absolute;

@@ -1,0 +1,529 @@
+.user-list {
+  &__table {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__tr {
+    display: flex;
+    padding: 9px 12px;
+    padding-top: 0;
+    padding-bottom: 1px;
+
+    border-bottom: 1px solid #eaeaea;
+
+    &:not(:first-child) {
+      padding-top: 9px;
+      padding-bottom: 7px;
+      padding-right: 0;
+    }
+
+    &--selected {
+      background: rgba(240, 240, 240, 0.5);
+    }
+  }
+
+  &__wrapper {
+    & .user-list__tr:first-child {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      padding-right: 0;
+    }
+  }
+
+  &__th {
+    margin-right: 50px;
+    & input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    & input:checked ~ .user-list__th-label--checkbox {
+      &::before {
+        position: absolute;
+        content: "";
+        width: 16px;
+        height: 16px;
+        left: 0;
+        top: 0;
+        background-color: #1d85d0;
+        border: 1px solid #1d85d0;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='10' viewBox='0 0 12 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.21667 6.16667L10.1333 0.25L11.9667 2.1L4.21667 9.85L0.0166667 5.65L1.86667 3.81667L4.21667 6.16667Z' fill='white'/%3E%3C/svg%3E%0A");
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    &--ip {
+      margin-right: 106px;
+      & .user-list__th-label--checkbox {
+        padding-left: 52px;
+      }
+    }
+
+    &--address {
+      margin-right: 240px;
+    }
+
+    &--id {
+      margin-right: 50px;
+    }
+
+    &--user {
+      margin-right: 130px;
+    }
+
+    &--mail {
+      margin-right: 143px;
+    }
+
+    &--reports {
+      margin-right: 30px;
+    }
+
+    &--mark {
+      margin-left: 18px;
+      margin-right: 30px;
+    }
+    &--model {
+      margin-right: 57px;
+    }
+    &--report-type {
+      margin-right: 41px;
+    }
+    &--vin-number {
+      margin-right: 210px;
+    }
+
+    &--no-label {
+      margin-right: 23px;
+    }
+
+    &--mr100 {
+      margin-right: 100px;
+    }
+
+    &:last-child {
+      margin-left: auto;
+      margin-right: 20px;
+    }
+
+    &--date:last-child {
+      margin-right: 160px;
+    }
+
+    &--status:last-child {
+      position: relative;
+      left: -60px;
+    }
+    &--last-date:last-child {
+      margin-right: 20px;
+    }
+    &--date-first {
+      margin-left: 0 !important;
+    }
+    &--action {
+      margin-left: 50px !important;
+    }
+  }
+
+  &__th-label {
+    position: relative;
+
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(51, 51, 51, 0.5);
+
+    &:hover {
+      & .user-list__sort-btn {
+        display: block;
+        position: absolute;
+        @include button-reset;
+        background-image: url("data:image/svg+xml,%3Csvg width='6' height='3' viewBox='0 0 6 3' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 3L0.401923 -4.89399e-07L5.59808 -3.51373e-08L3 3Z' fill='black' /%3E%3C/svg%3E%0A");
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 10px;
+        height: 10px;
+        opacity: 0.3;
+
+        &--increment {
+          transform: rotateZ(180deg);
+          left: -10px;
+          top: 0.1px;
+        }
+
+        &--decrement {
+          left: -10px;
+          top: 6px;
+        }
+        &--active,
+        &:hover,
+        &:focus {
+          opacity: 1;
+        }
+      }
+    }
+
+    &--checkbox {
+      padding-left: 28px;
+      &::before {
+        position: absolute;
+        content: "";
+        background: rgba(255, 255, 255, 1e-5);
+        background-image: linear-gradient(180deg, #ffffff 0%, #ebebeb 100%);
+        /* 15% Dark Background */
+        width: 16px;
+        height: 16px;
+        left: 0;
+        top: 0;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        box-sizing: border-box;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  &__sort-btn {
+    display: none;
+  }
+
+  &__checkbox {
+    position: absolute;
+    opacity: 0;
+  }
+
+  &__checkbox-label {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: "";
+      background: rgba(255, 255, 255, 1e-5);
+      background-image: linear-gradient(180deg, #ffffff 0%, #ebebeb 100%);
+
+      width: 16px;
+      height: 16px;
+      left: 0;
+      top: -2px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      box-sizing: border-box;
+      border-radius: 2px;
+    }
+
+    input:checked ~ & {
+      &::before {
+        position: absolute;
+        content: "";
+        width: 16px;
+        height: 16px;
+        left: 0;
+        top: -2px;
+        background-color: #1d85d0;
+        border: 1px solid #1d85d0;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='10' viewBox='0 0 12 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.21667 6.16667L10.1333 0.25L11.9667 2.1L4.21667 9.85L0.0166667 5.65L1.86667 3.81667L4.21667 6.16667Z' fill='white'/%3E%3C/svg%3E%0A");
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
+
+  &__link {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9px;
+    line-height: 12px;
+    text-decoration-line: underline;
+    margin-left: 28px;
+    color: #3072c4;
+  }
+
+  &__td {
+    display: flex;
+
+    &--ip {
+      width: 122px !important;
+      justify-content: space-between;
+      margin-right: 45px !important;
+      & .user-list__contact-info {
+        margin: 0;
+      }
+    }
+    &--mark {
+      margin-left: 20px;
+      margin-right: 30px !important;
+      min-width: 40px !important;
+    }
+    &--year {
+      margin-right: 46px;
+    }
+    &--report-type {
+      min-width: 107px;
+    }
+
+    &--min-w32 {
+      max-width: 32px;
+    }
+
+    &--pt {
+      padding-top: 9px;
+    }
+
+    &--wrap {
+      flex-wrap: wrap;
+    }
+
+    &--date-admin {
+      margin-right: 138px;
+    }
+
+    &--small-text {
+      font-family: "Segoe UI", sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 9px;
+      line-height: 12px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    &--address {
+      margin: 0 !important;
+      width: 285px;
+    }
+
+    &:nth-child(1) {
+      margin-right: 19px;
+      width: 71px;
+    }
+
+    &:nth-child(2) {
+      min-width: 174px;
+      margin-right: 47px;
+    }
+
+    &:nth-child(3) {
+      width: 183px;
+    }
+
+    &:last-child {
+      margin-left: auto;
+    }
+
+    &--mr-27 {
+      margin-right: 27px !important;
+    }
+    &--mr-35 {
+      margin-right: 35px !important;
+    }
+
+    &--date:nth-last-child(2) {
+      margin: 0;
+      margin-left: auto;
+    }
+    &--status:last-child {
+      margin: 0;
+      margin-right: 20px;
+      position: relative;
+      left: -20px;
+    }
+
+    &--date:last-child {
+      margin-right: 110px;
+    }
+
+    &--w {
+      width: 160px !important;
+      min-width: 160px !important;
+    }
+    &--w111 {
+      width: 111px !important;
+      min-width: 111px !important;
+    }
+    &--date-first {
+      margin-left: 0 !important;
+      max-height: 20px;
+    }
+    &--empty {
+      margin-right: 6px !important;
+    }
+
+    &--action {
+      margin-right: auto;
+      margin-left: -28px !important;
+      width: auto !important;
+    }
+  }
+
+  &__reports-count {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #333333;
+    display: block;
+    margin-top: 7px;
+    margin-left: 12px;
+    margin-right: 20px;
+    min-width: 100px;
+  }
+
+  &__name {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #333333;
+    text-align: left;
+
+    & span {
+      display: block;
+      font-family: "Segoe UI", sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 9px;
+      line-height: 12px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  &__user-id {
+    display: block;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 9px;
+    line-height: 12px;
+    text-decoration-line: underline;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #dadada;
+    overflow: hidden;
+    margin-top: 4px;
+    margin-right: 6px;
+  }
+
+  &__contact-info {
+    display: block;
+    margin-top: 8px;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #333333;
+  }
+
+  &__time {
+    display: block;
+    width: 100%;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #333333;
+    padding-top: 1px;
+    text-align: left;
+  }
+
+  &__report-link {
+    display: block;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    text-decoration-line: underline;
+
+    color: #333333;
+  }
+  &__report-info {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 9px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__contact-info {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+
+    &--error {
+      color: #ff4550;
+    }
+    &--success {
+      color: rgba(51, 51, 51, 0.5);
+      width: 90px;
+    }
+  }
+
+  &__actions {
+    margin: 0;
+    text-align: left;
+  }
+
+  &__action-wrapper {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: rgba(51, 51, 51, 0.5);
+
+    & del {
+      color: #000;
+    }
+
+    & ins {
+      color: #000;
+      text-decoration: none;
+      position: relative;
+      padding-left: 7px;
+
+      &::before {
+        position: absolute;
+        content: ">";
+        left: -2px;
+      }
+    }
+  }
+
+  &__action-link {
+    font-family: "Segoe UI", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #3072c4;
+
+    &--tel {
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 16px;
+
+      color: #000;
+    }
+  }
+}
