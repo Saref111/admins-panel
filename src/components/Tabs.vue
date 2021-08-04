@@ -38,9 +38,7 @@
         <li class="tab">
           <!-- <ActionsHistory /> -->
         </li>
-        <li class="tab">
-          <ActionsHistory />
-        </li>
+        <li class="tab"></li>
       </ul>
     </section>
   </main>

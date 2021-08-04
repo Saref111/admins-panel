@@ -1,6 +1,6 @@
 <template>
   <section class="user-list">
-    <FiltersPlain />
+    <FiltersPlain :checkedCount="checked" />
     <div class="user-list__table">
       <div class="user-list__tr user-list__tr--heading">
         <div class="user-list__th">
@@ -39,6 +39,7 @@
               type="checkbox"
               name="admins"
               :id="'check-' + action.id"
+              @input="checkUnit"
             />
             <label
               :for="'check-' + action.id"
@@ -156,16 +157,34 @@ export default {
   data() {
     return {
       actions: [],
+      checked: 0,
     };
   },
   async beforeMount() {
     const r = await this.$$.ajax(
       "https://dsscommunity.staj.fun/api/admin/admins/1/action-history"
     );
-    console.log(r);
-    this.actions = r;
+    this.actions = r.data.map((it) => {
+      it.action = JSON.parse(it.action);
+      return it;
+    });
+    return;
   },
   methods: {
+    checkUnit(e) {
+      this.checked = 0;
+      e.target
+        .closest("section")
+        .querySelectorAll("[name='admins']")
+        .forEach((it) => {
+          if (it.checked) {
+            this.checked++;
+          }
+        });
+    },
+    setAllCheckboxes() {
+      this.checked = 0;
+    },
     getType(type) {
       let reply = "";
 
