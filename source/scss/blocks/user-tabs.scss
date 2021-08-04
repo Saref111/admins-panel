@@ -75,6 +75,10 @@
     font-size: 12px;
     line-height: 10px;
     color: #ff4550;
+
+    &--unblock {
+      color: #219653;
+    }
   }
 
   &__tabs-list {
