@@ -60,25 +60,55 @@
             день назад
           </div>
           <div class="user-list__td--action user-list__td">
-            <dl class="user-list__actions">
+            <dl v-if="action.type === 'user_change'" class="user-list__actions">
               <div class="user-list__action-wrapper">
-                Создан тип отчета:
+                Изменен пользователь:
 
-                <a href="#" class="user-list__action-link">Название типа</a>
+                <a href="#" class="user-list__action-link"
+                  >id{{ action.target_id + "(" + action.user_name + ")" }}</a
+                >
               </div>
-              <div class="user-list__action-wrapper">
+              <div
+                v-if="action.action.fields.phone"
+                class="user-list__action-wrapper"
+              >
                 Телефон:
 
                 <a
-                  href="tel:12312312"
+                  :href="'tel:' + action.action.fields.phone.new"
                   class="user-list__action-link user-list__action-link--tel"
-                  >123123123</a
+                  >{{ action.action.fields.phone.new }}</a
                 >
               </div>
-              <div class="user-list__action-wrapper">Добавлено фото</div>
-              <div class="user-list__action-wrapper">Удалено фото</div>
+              <div
+                v-if="action.action.fields.photo === 'added'"
+                class="user-list__action-wrapper"
+              >
+                Добавлено фото
+              </div>
+              <div
+                v-if="action.action.fields.photo === 'removed'"
+                class="user-list__action-wrapper"
+              >
+                Удалено фото
+              </div>
+              <div v-if="isName(action)" class="user-list__action-wrapper">
+                Имя <del>{{ action.action.fields.name.old }}</del>
+                <ins>{{ action.action.fields.name.new }}</ins>
+              </div>
+            </dl>
+            <dl
+              v-if="action.type === 'user_blocked'"
+              class="user-list__actions"
+            >
               <div class="user-list__action-wrapper">
-                Имя <del>Ivan</del> <ins>John</ins>
+                Пользователь заблокирован:
+
+                <a href="#" class="user-list__action-link"
+                  >id{{
+                    action.action.target_id + "(" + action.user_name + ")"
+                  }}</a
+                >
               </div>
             </dl>
           </div>
@@ -102,75 +132,84 @@ export default {
     return {
       actions: [
         {
-          id: 1,
-          datetime: {
-            ___$isLiteral: true,
-            ___$string: "undefined()",
-          },
-          type: "user_change",
-          target_id: 1,
-          user_name: "Пётр",
-          action: {
-            fields: {
-              phone: {
-                new: "+38098000000",
-              },
-              photo: "added",
-              name: {
-                old: "Иван",
-                new: "Пётр",
-              },
-            },
-          },
-        },
-        {
-          id: 2,
-          datetime: {
-            ___$isLiteral: true,
-            ___$string: "undefined()",
-          },
-          type: "user_blocked",
-          user_name: "Пётр",
-          action: {
-            target_id: 1,
-          },
-        },
-        {
-          id: 3,
-          datetime: {
-            ___$isLiteral: true,
-            ___$string: "undefined()",
-          },
-          type: "user_change",
-          target_id: 1,
-          user_name: "Пётр",
-          action: {
-            fields: {
-              photo: "removed",
-              name: {
-                new: "Иван",
-              },
-            },
-          },
+          id: 5,
+          user_id: 1,
+          type: "admin_changed",
+          target_id: 2,
+          action:
+            '{"fields":{"permissions_granted":["\\u0421\\u043e\\u0437\\u0434\\u0430\\u043d\\u0438\\u0435 \\u0442\\u0438\\u043f\\u0430 \\u043e\\u0442\\u0447\\u0435\\u0442\\u0430","\\u0420\\u0435\\u0434\\u0430\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0448\\u0430\\u0433\\u0430","\\u0420\\u0435\\u0434\\u0430\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043f\\u043e\\u043b\\u0435\\u0439 \\u0432\\u043d\\u0443\\u0442\\u0440\\u0438 \\u0448\\u0430\\u0433\\u0430"]}}',
+          created_at: "2021-08-04T10:35:34.000000Z",
+          updated_at: "2021-08-04T10:35:34.000000Z",
+          user_name:
+            "Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera",
         },
         {
           id: 4,
-          datetime: {
-            ___$isLiteral: true,
-            ___$string: "undefined()",
-          },
+          user_id: 1,
+          type: "admin_changed",
+          target_id: 2,
+          action:
+            '{"fields":{"permissions_declined":["\\u0420\\u0435\\u0434\\u0430\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0442\\u0438\\u043f\\u0430 \\u043e\\u0442\\u0447\\u0435\\u0442\\u0430"]}}',
+          created_at: "2021-08-04T10:35:28.000000Z",
+          updated_at: "2021-08-04T10:35:28.000000Z",
+          user_name:
+            "Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera",
+        },
+        {
+          id: 3,
+          user_id: 1,
+          type: "admin_changed",
+          target_id: 2,
+          action:
+            '{"fields":{"second_name":{"old":"Verla Reinger II","new":"Verla Reinger I"},"phone":{"old":"445-568-6348","new":"445-568-634"}}}',
+          created_at: "2021-08-04T10:07:36.000000Z",
+          updated_at: "2021-08-04T10:07:36.000000Z",
+          user_name:
+            "Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera",
+        },
+        {
+          id: 2,
+          user_id: 1,
           type: "user_change",
-          target_id: 12,
-          user_name: "Имя админ - ник админа",
-          action: {
-            fields: {
-              permissions_granted: "Приглашение админа",
-              permissions_declined: "Удаление админа",
-            },
-          },
+          target_id: 2,
+          action:
+            '{"fields":{"phone":{"old":"445-568-634","new":"445-568-6348"}}}',
+          created_at: "2021-08-04T10:04:02.000000Z",
+          updated_at: "2021-08-04T10:04:02.000000Z",
+          user_name: "Prof. Tristin Thompson Sr.",
+        },
+        {
+          id: 1,
+          user_id: 1,
+          type: "user_change",
+          target_id: 2,
+          action:
+            '{"fields":{"phone":{"old":"445-568-6348","new":"445-568-634"}}}',
+          created_at: "2021-08-04T09:45:59.000000Z",
+          updated_at: "2021-08-04T09:45:59.000000Z",
+          user_name: "Prof. Tristin Thompson Sr.",
         },
       ],
     };
+  },
+  methods: {
+    getType(type) {
+      let reply = "";
+
+      switch (true) {
+        case type === "user_change":
+          reply = "";
+      }
+      return reply;
+    },
+    isName(data) {
+      return (
+        data.action.fields &&
+        data.action.fields.name &&
+        data.action.fields.name.new &&
+        data.action.fields.name.old
+      );
+    },
   },
 };
 </script>
