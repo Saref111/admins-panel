@@ -55,6 +55,7 @@ const adminFilters = Vue.component("admin-filters", {
 
         query = query + "&last_login_from=" + time.toISOString();
       }
+      console.log(query);
       return query;
     },
   },
@@ -132,6 +133,12 @@ const pag = Vue.component("Pagination", {
 });
 
 const adminList = Vue.component("admin-list", {
+  props: {
+    url: {
+      type: String,
+      default: "",
+    },
+  },
   data() {
     return {
       query: "",
@@ -179,7 +186,7 @@ const adminList = Vue.component("admin-list", {
       this.data = resp.data.data;
     },
     async sendRequest(query) {
-      const resp = await $.ajax(getRoute(query), {
+      const resp = await $.ajax(this.url + "?" + query, {
         headers: {
           Accept: "application/json; charset=utf-8",
           "Content-Type": "application/json; charset=utf-8",
