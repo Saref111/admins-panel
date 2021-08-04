@@ -1,27 +1,18 @@
 <template>
   <div id="app">
-    <AdminsList url="https://dsscommunity.staj.fun/api/admin/admins/lists" />
+    <!-- <AdminsList url="https://dsscommunity.staj.fun/api/admin/admins/lists" /> -->
+    <Tabs></Tabs>
   </div>
 </template>
 
 <script>
-import AdminsList from "./components/AdminsList.vue";
+// import AdminsList from "./components/AdminsList.vue";
+import Tabs from "./components/Tabs.vue";
 
 export default {
   name: "App",
   components: {
-    AdminsList,
+    Tabs,
   },
 };
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
