@@ -130,66 +130,10 @@ export default {
 
   data() {
     return {
-      actions: [
-        {
-          id: 5,
-          user_id: 1,
-          type: "admin_changed",
-          target_id: 2,
-          action:
-            '{"fields":{"permissions_granted":["\\u0421\\u043e\\u0437\\u0434\\u0430\\u043d\\u0438\\u0435 \\u0442\\u0438\\u043f\\u0430 \\u043e\\u0442\\u0447\\u0435\\u0442\\u0430","\\u0420\\u0435\\u0434\\u0430\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0448\\u0430\\u0433\\u0430","\\u0420\\u0435\\u0434\\u0430\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043f\\u043e\\u043b\\u0435\\u0439 \\u0432\\u043d\\u0443\\u0442\\u0440\\u0438 \\u0448\\u0430\\u0433\\u0430"]}}',
-          created_at: "2021-08-04T10:35:34.000000Z",
-          updated_at: "2021-08-04T10:35:34.000000Z",
-          user_name:
-            "Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera",
-        },
-        {
-          id: 4,
-          user_id: 1,
-          type: "admin_changed",
-          target_id: 2,
-          action:
-            '{"fields":{"permissions_declined":["\\u0420\\u0435\\u0434\\u0430\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0442\\u0438\\u043f\\u0430 \\u043e\\u0442\\u0447\\u0435\\u0442\\u0430"]}}',
-          created_at: "2021-08-04T10:35:28.000000Z",
-          updated_at: "2021-08-04T10:35:28.000000Z",
-          user_name:
-            "Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera",
-        },
-        {
-          id: 3,
-          user_id: 1,
-          type: "admin_changed",
-          target_id: 2,
-          action:
-            '{"fields":{"second_name":{"old":"Verla Reinger II","new":"Verla Reinger I"},"phone":{"old":"445-568-6348","new":"445-568-634"}}}',
-          created_at: "2021-08-04T10:07:36.000000Z",
-          updated_at: "2021-08-04T10:07:36.000000Z",
-          user_name:
-            "Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera",
-        },
-        {
-          id: 2,
-          user_id: 1,
-          type: "user_change",
-          target_id: 2,
-          action:
-            '{"fields":{"phone":{"old":"445-568-634","new":"445-568-6348"}}}',
-          created_at: "2021-08-04T10:04:02.000000Z",
-          updated_at: "2021-08-04T10:04:02.000000Z",
-          user_name: "Prof. Tristin Thompson Sr.",
-        },
-        {
-          id: 1,
-          user_id: 1,
-          type: "user_change",
-          target_id: 2,
-          action:
-            '{"fields":{"phone":{"old":"445-568-6348","new":"445-568-634"}}}',
-          created_at: "2021-08-04T09:45:59.000000Z",
-          updated_at: "2021-08-04T09:45:59.000000Z",
-          user_name: "Prof. Tristin Thompson Sr.",
-        },
-      ],
+      actions: [],
+      // actions: JSON.parse(
+      //   '[{"id":6,"user_id":1,"type":"admin_changed","target_id":2,"action":"{"fields":{"permissions_declined":["\u0421\u043e\u0437\u0434\u0430\u043d\u0438\u0435 \u0442\u0438\u043f\u0430 \u043e\u0442\u0447\u0435\u0442\u0430","\u0423\u0434\u0430\u043b\u0435\u043d\u0438\u0435 \u0442\u0438\u043f\u0430 \u043e\u0442\u0447\u0435\u0442\u0430"]}}","created_at":"2021-08-04T11:41:23.000000Z","updated_at":"2021-08-04T11:41:23.000000Z","user_name":"Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera"},{"id":5,"user_id":1,"type":"admin_changed","target_id":2,"action":"{"fields":{"permissions_granted":["\\u0421\\u043e\\u0437\\u0434\\u0430\\u043d\\u0438\\u0435 \\u0442\\u0438\\u043f\\u0430 \\u043e\\u0442\\u0447\\u0435\\u0442\\u0430","\\u0420\\u0435\\u0434\\u0430\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0448\\u0430\\u0433\\u0430","\\u0420\\u0435\\u0434\\u0430\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u043f\\u043e\\u043b\\u0435\\u0439 \\u0432\\u043d\\u0443\\u0442\\u0440\\u0438 \\u0448\\u0430\\u0433\\u0430"]}}","created_at":"2021-08-04T10:35:34.000000Z","updated_at":"2021-08-04T10:35:34.000000Z","user_name":"Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera"},{"id":4,"user_id":1,"type":"admin_changed","target_id":2,"action":"{"fields":{"permissions_declined":["\\u0420\\u0435\\u0434\\u0430\\u043a\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0442\\u0438\\u043f\\u0430 \\u043e\\u0442\\u0447\\u0435\\u0442\\u0430"]}}","created_at":"2021-08-04T10:35:28.000000Z","updated_at":"2021-08-04T10:35:28.000000Z","user_name":"Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera"},{"id":3,"user_id":1,"type":"admin_changed","target_id":2,"action":"{"fields":{"second_name":{"old":"Verla Reinger II","new":"Verla Reinger I"},"phone":{"old":"445-568-6348","new":"445-568-634"}}}","created_at":"2021-08-04T10:07:36.000000Z","updated_at":"2021-08-04T10:07:36.000000Z","user_name":"Prof. Tristin Thompson Sr. Verla Reinger I - lazaro.romaguera"},{"id":2,"user_id":1,"type":"user_change","target_id":2,"action":"{"fields":{"phone":{"old":"445-568-634","new":"445-568-6348"}}}","created_at":"2021-08-04T10:04:02.000000Z","updated_at":"2021-08-04T10:04:02.000000Z","user_name":"Prof. Tristin Thompson Sr."},{"id":1,"user_id":1,"type":"user_change","target_id":2,"action":"{"fields":{"phone":{"old":"445-568-6348","new":"445-568-634"}}}","created_at":"2021-08-04T09:45:59.000000Z","updated_at":"2021-08-04T09:45:59.000000Z","user_name":"Prof. Tristin Thompson Sr."}],"first_page_url":"http:\/\/dss\/admin\/admins\/1\/action-history?page=1","from":1,"last_page":1,"last_page_url":"http:\/\/dss\/admin\/admins\/1\/action-history?page=1","links":[{"url":null,"label":"« Previous","active":false},{"url":"http:\/\/dss\/admin\/admins\/1\/action-history?page=1","label":"1","active":true},{"url":null,"label":"Next »","active":false}],"next_page_url":null,"path":"http:\/\/dss\/admin\/admins\/1\/action-history","per_page":12,"prev_page_url":null,"to":6,"total":6}'
+      // ),
     };
   },
   methods: {

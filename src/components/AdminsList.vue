@@ -112,6 +112,7 @@ import adminFilters from "./Filters.vue";
 import pag from "./Pagination.vue";
 
 export default {
+  name: 'AdminList',
   props: {
     url: {
       type: String,
